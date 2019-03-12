@@ -11,3 +11,6 @@ print(Message4)
 
 fjams = "noget kode"
 print(fjams)
+
+changes = "Make some changes"
+print(changes)
