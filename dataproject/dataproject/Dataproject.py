@@ -9,4 +9,5 @@ print(message2)
 Message4 = "Fuck"
 print(Message4)
 
-noget kode
+fjams = "noget kode"
+print(fjams)
