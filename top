@@ -1,0 +1,108 @@
+[33mcommit 7644b4f6311cdbbdbc67cc9af9002c5b6e665ef4[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Merge: 23cb989 c88baf1
+Author: NVF696 <nvf696@alumni.ku.dk>
+Date:   Tue Mar 12 17:46:59 2019 +0100
+
+    test
+
+[33mcommit 23cb98915eed92fe7838f6b9df0c8f0ca6845b29[m
+Author: NVF696 <nvf696@alumni.ku.dk>
+Date:   Tue Mar 12 17:43:53 2019 +0100
+
+    add new shit
+
+[33mcommit c88baf1d5ca9b820ab88bf8e56b3fcc4f349f6f3[m
+Author: Mads Frederiksen <Madsfrederiksen22@gmail.com>
+Date:   Tue Mar 12 17:42:09 2019 +0100
+
+    My first commit
+
+[33mcommit 0782b226bff61b0129ce74b5206228016b64d0e1[m
+Author: NVF696 <nvf696@alumni.ku.dk>
+Date:   Tue Mar 12 17:37:20 2019 +0100
+
+    add my test
+
+[33mcommit 8d3b9e3ad05abe882e230414afb6a578897fa41e[m
+Author: Mads Frederiksen <Madsfrederiksen22@gmail.com>
+Date:   Tue Mar 12 17:26:58 2019 +0100
+
+    > git sync
+
+[33mcommit e04c144ce1e67681cc01b36a40479f20a294f26e[m
+Author: MadsFrederiksen <47330373+MadsFrederiksen@users.noreply.github.com>
+Date:   Tue Mar 12 17:18:34 2019 +0100
+
+    Create Dataproject.py
+
+[33mcommit 23a3abf2081e8743bf6a769d3646578921864f94[m
+Author: Jakob Jul Elben <elbenjakobjul@gmail.com>
+Date:   Mon Jan 14 15:53:50 2019 +0100
+
+    Update environment.yml
+
+[33mcommit be3185d636c10c11e10a799004b285edeadcdaf3[m
+Author: Jakob Jul Elben <elbenjakobjul@gmail.com>
+Date:   Mon Jan 14 15:36:06 2019 +0100
+
+    Update environment.yml
+
+[33mcommit 4b675a981b2554ed40e8ecda8402785a39369531[m
+Author: Jakob Jul Elben <elbenjakobjul@gmail.com>
+Date:   Mon Jan 14 15:23:53 2019 +0100
+
+    Update import
+
+[33mcommit 5fd6f7a2771d52c4e97dcdf5f7ceedce8f4abe76[m
+Author: Jakob Jul Elben <elbenjakobjul@gmail.com>
+Date:   Mon Jan 14 15:05:00 2019 +0100
+
+    Update environment.yml
+
+[33mcommit a7f7165f1f18e3241959deab663603f9fe18b193[m
+Author: Jakob Jul Elben <elbenjakobjul@gmail.com>
+Date:   Mon Jan 14 15:04:39 2019 +0100
+
+    Update postBuild
+
+[33mcommit c7472d6eb557d8b4c4a6adcd2c06e9a5479ef212[m
+Author: Jeppe Druedahl <jeppe.druedahl@econ.ku.dk>
+Date:   Mon Jan 14 10:19:39 2019 +0100
+
+    Update __init__.py
+
+[33mcommit e1a7dc73bbbb09a11bc707bace43bbc29af614a7[m
+Author: Jeppe Druedahl <jeppe.druedahl@econ.ku.dk>
+Date:   Mon Jan 14 10:19:16 2019 +0100
+
+    Update __init__.py
+
+[33mcommit 82918e362bddb8fb38f44460c5318ce7d502b6f2[m
+Author: Jeppe Druedahl <jeppe.druedahl@econ.ku.dk>
+Date:   Mon Jan 14 10:18:57 2019 +0100
+
+    Update __init__.py
+
+[33mcommit 23a977f1111f86d62fa3d6a79c76666a74b6c457[m
+Author: Jeppe Druedahl <jeppe.druedahl@econ.ku.dk>
+Date:   Mon Jan 14 10:16:44 2019 +0100
+
+    Update README.md
+
+[33mcommit 09b49d21003b399b02e8d103a1a5dd431e0e1e64[m
+Author: Jakob Jul Elben <elbenjakobjul@gmail.com>
+Date:   Sun Nov 18 16:00:16 2018 +0100
+
+    Update imports
+
+[33mcommit c79e3d8879cdfb2d9c2336090ce4e922cebd13ad[m
+Author: Jakob Jul Elben <elbenjakobjul@gmail.com>
+Date:   Sun Nov 18 15:54:31 2018 +0100
+
+    Initial commit
+
+[33mcommit ab81cf5d6750e307b2c4300f754fb6eec835f0d1[m
+Author: Jakob Jul Elben <elbenjakobjul@gmail.com>
+Date:   Sun Nov 18 15:11:08 2018 +0100
+
+    Initial commit

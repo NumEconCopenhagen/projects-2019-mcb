@@ -1,8 +1,9 @@
-message = "Hej Bjooorn"
+message = "Hello world"
 print(message)
 
-message2 = "jeg er sulten"
+message2 = "Tes2"
 print(message2)
 
-message3 = "bjørn tester"
+message3 = "Test3"
 print(message3)
+
