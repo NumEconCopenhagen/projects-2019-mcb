@@ -65,4 +65,3 @@ candlestick_ohlc(ax1,Tesla_ohlc.values, width=2, colorup="g")
 ax2.fill_between(Tesla_volume.index.map(mdates.date2num), Tesla_volume.values, 0)
 plt.show() #Candlestick and volume on the lower graph
 
-#Automating S&P 500 list
