@@ -24,3 +24,5 @@ csv.head(100) #Helt det samme som før, bare en anden metode
 csv['Adj Close'].plot()
 csv['Open'].plot()
 
+print(csv[["Open", "High"]].head(20))
+
