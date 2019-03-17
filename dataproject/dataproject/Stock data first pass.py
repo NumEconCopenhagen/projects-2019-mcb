@@ -50,7 +50,11 @@ Tesla_ohlc.head()
 
 Tesla_ohlc.reset_index(inplace=True)
 
-#Convert to mdates
+#Convert to mdates and candlestick
+Tesla_ohlc = csv["Adj Close"].resample("10D").ohlc() #Ohlc = Open, high, low, close. 10D = 10 days
+Tesla_volume = csv["Volume"].resample("10D").sum()
+Tesla_ohlc.reset_index(inplace=True)
+
 Tesla_ohlc["Date"] = Tesla_ohlc["Date"].map(mdates.date2num)
 
 ax1 = plt.subplot2grid((6,1), (0,0), rowspan= 5, colspan=1)  
@@ -59,4 +63,6 @@ ax1.xaxis_date()
 
 candlestick_ohlc(ax1,Tesla_ohlc.values, width=2, colorup="g")
 ax2.fill_between(Tesla_volume.index.map(mdates.date2num), Tesla_volume.values, 0)
-plt.show()
+plt.show() #Candlestick and volume on the lower graph
+
+#Automating S&P 500 list
