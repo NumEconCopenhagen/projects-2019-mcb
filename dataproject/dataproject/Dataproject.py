@@ -1,9 +1,3 @@
-messages = "christian her"
-print(messages)
-
-message1 = "Let the hacking begin"
-print(message1)
-
 # Run this shit mah niggas in your terminal (no #)
 # Source: https://pypi.org/project/IneqPy/
 """
