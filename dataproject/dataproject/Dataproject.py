@@ -9,5 +9,13 @@ print(message1)
 # cd IneqPy
 # pip install .
 
-message2 = "jeg hacker nu"
+message2 = "jeg hacker nu" 
 print(message2)
+
+# Docstring
+""" Hello and welcome to my Minecraft video. Remember to like, subscribe and smash that bell button!"""
+
+# Importing packages
+import pandas as pd
+import numpy as np
+import ineqpy
