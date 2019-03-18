@@ -1,30 +1,53 @@
+messages = "christian her"
+print(messages)
 
-# DOCSTRING:
+message1 = "Let the hacking begin"
+print(message1)
+
+# Run this shit mah niggas in your terminal (no #)
+# Source: https://pypi.org/project/IneqPy/
 """
-Group: NVF696, RXW556, MFQ992
-Source: https://pypi.org/project/IneqPy/
-Run the following code in your terminal
-to install the requires IneqPy package: 
 git clone https://github.com/mmngreco/IneqPy.git
 cd IneqPy
 pip install .
-""" 
+"""
 
-def lorenz(arr):
-    # this divides the prefix sum by the total sum
-    # this ensures all the values are between 0 and 1.0
-    scaled_prefix_sum = arr.cumsum() / arr.sum()
-    # this prepends the 0 value (because 0% of all people have 0% of all wealth)
-    return np.insert(scaled_prefix_sum, 0, 0)
+message2 = "jeg hacker nu" 
+print(message2)
 
-# show the gini index!
-print(gini(arr))
+# Docstring
+""" Hello and welcome to my Minecraft video. Remember to like, subscribe and smash that bell button!"""
 
-lorenz_curve = lorenz(arr)
+# Importing packages
+import pandas as pd
+import numpy as np
+import ineqpy
 
-# we need the X values to be between 0.0 to 1.0
-plt.plot(np.linspace(0.0, 1.0, lorenz_curve.size), lorenz_curve)
-# plot the straight line perfect equality curve
-plt.plot([0,1], [0,1])
+def G(v):
+    bins = np.linspace(0., 100., 11)
+    total = float(np.sum(v))
+    yvals = []
+    for b in bins:
+        bin_vals = v[v <= np.percentile(v, b)]
+        bin_fraction = (np.sum(bin_vals) / total) * 100.0
+        yvals.append(bin_fraction)
+    # perfect equality area
+    pe_area = np.trapz(bins, x=bins)
+    # lorenz area
+    lorenz_area = np.trapz(yvals, x=bins)
+    gini_val = (pe_area - lorenz_area) / float(pe_area)
+    return bins, yvals, gini_val
 
-plt.show()
+v = np.random.rand(500)
+bins, result, gini_val = G(v)
+plt.figure()
+plt.subplot(2, 1, 1)
+plt.plot(bins, result, label="observed")
+plt.plot(bins, bins, '--', label="perfect eq.")
+plt.xlabel("fraction of population")
+plt.ylabel("fraction of wealth")
+plt.title("GINI: %.4f" %(gini_val))
+plt.legend()
+plt.subplot(2, 1, 2)
+plt.hist(v, bins=20)
+
