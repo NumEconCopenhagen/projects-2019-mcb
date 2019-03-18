@@ -40,7 +40,7 @@ indkp_vars
 
 indkp_vars["values"]
 
-
+Dst.get_data(table_id="INDKP109", variables={REGLAND:["Hele landet"]})
 
 v = np.random.rand(500)
 bins, result, gini_val = G(v)
