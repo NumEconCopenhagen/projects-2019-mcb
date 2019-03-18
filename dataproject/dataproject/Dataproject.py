@@ -1,29 +1,14 @@
-# Run this shit mah niggas in your terminal (no #)
-# Source: https://pypi.org/project/IneqPy/
-# git clone https://github.com/mmngreco/IneqPy.git
-# cd IneqPy
-# pip install .
 
-# Docstring
-""" Hello and welcome to my Minecraft video. Remember to like, subscribe and smash that bell button!"""
-
-# Importing packages
-import pandas as pd
-import numpy as np
-import ineqpy
-import matplotlib.pyplot as plt
-
-# ensure your arr is sorted from lowest to highest values first!
-arr = np.array([1,4,6,9,100])
-
-def gini(arr):
-    count = arr.size
-    coefficient = 2 / count
-    indexes = np.arange(1, count + 1)
-    weighted_sum = (indexes * arr).sum()
-    total = arr.sum()
-    constant = (count + 1) / count
-    return coefficient * weighted_sum / total - constant
+# DOCSTRING:
+"""
+Group: NVF696, RXW556, MFQ992
+Source: https://pypi.org/project/IneqPy/
+Run the following code in your terminal
+to install the requires IneqPy package: 
+git clone https://github.com/mmngreco/IneqPy.git
+cd IneqPy
+pip install .
+""" 
 
 def lorenz(arr):
     # this divides the prefix sum by the total sum
