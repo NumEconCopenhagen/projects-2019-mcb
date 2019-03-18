@@ -12,6 +12,7 @@ pip install git+https://github.com/elben10/pydst
 
 # Importing packages
 import pandas as pd
+import matplotlib as plt
 import numpy as np
 import ineqpy
 import pydst
