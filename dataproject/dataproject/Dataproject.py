@@ -31,6 +31,16 @@ def G(v):
     gini_val = (pe_area - lorenz_area) / float(pe_area)
     return bins, yvals, gini_val
 
+Dst = pydst.Dst(lang='da')
+Dst.get_data(table_id = "INDKP109")
+
+indkp_vars = Dst.get_variables(table_id="INDKP109") 
+indkp_vars
+
+indkp_vars["values"]
+
+
+
 v = np.random.rand(500)
 bins, result, gini_val = G(v)
 plt.figure()
