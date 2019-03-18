@@ -8,3 +8,6 @@ print(message1)
 # git clone https://github.com/mmngreco/IneqPy.git
 # cd IneqPy
 # pip install .
+
+message2 = "jeg hacker nu"
+print(message2)
