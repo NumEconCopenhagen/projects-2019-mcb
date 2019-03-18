@@ -1,15 +1,14 @@
-# Run this shit mah niggas in your terminal (no #)
-# Source: https://pypi.org/project/IneqPy/
+# DOCSTRING:
 """
+Group: NVF696, RXW556, MFQ992
+Source: https://pypi.org/project/IneqPy/
+Run the following code in your terminal
+to install the requires IneqPy package: 
 git clone https://github.com/mmngreco/IneqPy.git
 cd IneqPy
 pip install .
 pip install git+https://github.com/elben10/pydst
 """
-
-# Docstring
-""" Hello and welcome to my Minecraft video. Remember to like, subscribe and smash that bell button!"""
-
 # Importing packages
 import pandas as pd
 import matplotlib.pyplot as plt
