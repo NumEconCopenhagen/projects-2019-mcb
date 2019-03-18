@@ -6,9 +6,6 @@ cd IneqPy
 pip install .
 """
 
-message2 = "jeg hacker nu" 
-print(message2)
-
 # Docstring
 """ Hello and welcome to my Minecraft video. Remember to like, subscribe and smash that bell button!"""
 
