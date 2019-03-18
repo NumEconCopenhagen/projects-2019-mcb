@@ -7,13 +7,13 @@ to install the requires IneqPy package:
 git clone https://github.com/mmngreco/IneqPy.git
 cd IneqPy
 pip install .
+pip install git+https://github.com/elben10/pydst
 """
 # Importing packages
 import pandas as pd
 import numpy as np
 import ineqpy
 import pydst
-import matplotlib as plt
 
 def G(v):
     bins = np.linspace(0., 100., 11)
@@ -29,6 +29,16 @@ def G(v):
     lorenz_area = np.trapz(yvals, x=bins)
     gini_val = (pe_area - lorenz_area) / float(pe_area)
     return bins, yvals, gini_val
+
+Dst = pydst.Dst(lang='da')
+Dst.get_data(table_id = "INDKP109")
+
+indkp_vars = Dst.get_variables(table_id="INDKP109") 
+indkp_vars
+
+indkp_vars["values"]
+
+
 
 v = np.random.rand(500)
 bins, result, gini_val = G(v)
