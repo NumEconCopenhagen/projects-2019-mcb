@@ -13,6 +13,7 @@ pip install .
 import pandas as pd
 import numpy as np
 import ineqpy
+import pydst
 
 def G(v):
     bins = np.linspace(0., 100., 11)
