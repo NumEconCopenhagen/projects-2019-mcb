@@ -31,6 +31,7 @@ def G(v):
     gini_val = (pe_area - lorenz_area) / float(pe_area)
     return bins, yvals, gini_val
 
+#Henter data fra DST API
 Dst = pydst.Dst(lang='da')
 Dst.get_data(table_id = "INDKP109")
 
