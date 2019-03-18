@@ -4,6 +4,7 @@
 git clone https://github.com/mmngreco/IneqPy.git
 cd IneqPy
 pip install .
+pip install git+https://github.com/elben10/pydst
 """
 
 # Docstring
