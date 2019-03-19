@@ -16,6 +16,7 @@ import numpy as np
 import ineqpy
 import pydst
 
+# Defining the Gini-coefficient
 def G(v):
     bins = np.linspace(0., 100., 11)
     total = float(np.sum(v))
@@ -31,24 +32,33 @@ def G(v):
     gini_val = (pe_area - lorenz_area) / float(pe_area)
     return bins, yvals, gini_val
 
-#Henter data fra DST API
+
+
+# Fetching data from Denmarks Statistic's
 Dst = pydst.Dst(lang='da')
-Dst.get_data(table_id = "INDKP109")
+#Dst.get_data(table_id = "INDKP109")
 
-indkp_vars = Dst.get_variables(table_id="INDKP109") 
-indkp_vars
-
-indkp_vars["values"]
-
-Dst.get_data(table_id="INDKP109", variables={"REGLAND":["000"], "TID":["*"], "ENHED":["*"], "KOEN":["*"], "ALDER1":["*"], "HERKOMST":["*"]})
+#indkp_vars
+#indkp_vars["values"]
+indkp_vars = Dst.get_data(table_id="INDKP109", variables={"REGLAND":["000"], "TID":["2015"], "ENHED":["*"], "KOEN":["*"], "ALDER1":["*"], "HERKOMST":["*"]})
 
 
-v = np.random.rand(500)
+# Fetching data list
+# x = np.random.rand(500)
+#v = np.log(indkp_vars[['INDHOLD'], ['TID'=2015]]) #.values
+#v = indkp_vars['INDHOLD']
+v = np.log(indkp_vars['INDHOLD']) #.values
+
+print(v)
+print(v.max()) #oh shit
+
+
+# Plotting figure
 bins, result, gini_val = G(v)
 plt.figure()
 plt.subplot(2, 1, 1)
 plt.plot(bins, result, label="observed")
-plt.plot(bins, bins, '--', label="perfect eq.")
+plt.plot(bins, bins, '--', label="perfect equality")
 plt.xlabel("fraction of population")
 plt.ylabel("fraction of wealth")
 plt.title("GINI: %.4f" %(gini_val))
