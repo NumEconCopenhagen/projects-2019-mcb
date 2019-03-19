@@ -41,7 +41,7 @@ Dst = pydst.Dst(lang='da')
 
 #indkp_vars
 #indkp_vars["values"]
-indkp_vars = Dst.get_data(table_id="INDKP109", variables={"REGLAND":["000"], "TID":["2015"], "ENHED":["*"], "KOEN":["*"], "ALDER1":["*"], "HERKOMST":["*"]})
+indkp_vars = Dst.get_data(table_id="INDKPFPP3", variables={"REGLAND":["000"], "TID":["2015"], "ENHED":["*"], "KOEN":["*"], "ALDER1":["*"], "HERKOMST":["*"]})
 
 
 # Fetching data list
@@ -68,4 +68,3 @@ plt.subplot(2, 1, 2)
 plt.hist(v, bins=20)
 
 def interactive_lorenz("REGLAND", "TID", "ENHED", "KOEN", "ALDER1", "HERKOMST")
-    
