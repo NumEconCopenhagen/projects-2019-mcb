@@ -15,6 +15,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import ineqpy
 import pydst
+import ipywidgets as widgets
 
 # Defining the Gini-coefficient
 def G(v):
@@ -66,3 +67,5 @@ plt.legend()
 plt.subplot(2, 1, 2)
 plt.hist(v, bins=20)
 
+def interactive_lorenz("REGLAND", "TID", "ENHED", "KOEN", "ALDER1", "HERKOMST")
+    
