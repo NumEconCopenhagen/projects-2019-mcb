@@ -15,6 +15,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import ineqpy
 import pydst
+import ipywidgets as widgets
 
 def G(v):
     bins = np.linspace(0., 100., 11)
