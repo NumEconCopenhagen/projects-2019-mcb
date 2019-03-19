@@ -67,4 +67,4 @@ plt.legend()
 plt.subplot(2, 1, 2)
 plt.hist(v, bins=20)
 
-def interactive_lorenz("REGLAND", "TID", "ENHED", "KOEN", "ALDER1", "HERKOMST")
+#def interactive_lorenz("REGLAND", "TID", "ENHED", "KOEN", "ALDER1", "HERKOMST"):
