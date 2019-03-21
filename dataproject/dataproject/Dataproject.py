@@ -53,7 +53,6 @@ v = np.log(indkp_vars['INDHOLD']) #.values
 print(v)
 print(v.max()) #oh shit
 
-
 # Plotting figure
 bins, result, gini_val = G(v)
 plt.figure()

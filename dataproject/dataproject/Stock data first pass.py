@@ -13,14 +13,14 @@ style.use("ggplot")
 start = dt.datetime(2000,1,1)
 end = (2016,12,31)
 
-Tesla = web.DataReader("TSLA", data_source = "yahoo", start="1/1/2010")
-Tesla.head(100)
+Stock = web.DataReader("TSLA", data_source = "yahoo", start="1/1/2010")
+Stock.head(100)
 
 #Tesla.to_excel("TSLA.xls") #Laver en Excel fil
-Tesla.to_csv("TSLA.csv")
+Stock.to_csv("Stock.csv")
 
 #Indlæs en csv fil, og lav datetime index
-csv = pd.read_csv("TSLA.csv", parse_dates=True, index_col=0)
+csv = pd.read_csv("Stock.csv", parse_dates=True, index_col=0)
 csv.head(100) #Helt det samme som før, bare en anden metode
 
 csv['Adj Close'].plot()
@@ -43,19 +43,19 @@ ax1.plot(csv.index, csv["100ma"])
 ax2.plot(csv.index, csv["Volume"])
 
 #Resampling data
-Tesla_ohlc = csv["Adj Close"].resample("10D").ohlc() #Ohlc = Open, high, low, close. 10D = 10 days
-Tesla_volume = csv["Volume"].resample("10D").sum()
+Stock_ohlc = csv["Adj Close"].resample("10D").ohlc() #Ohlc = Open, high, low, close. 10D = 10 days
+Stock_volume = csv["Volume"].resample("10D").sum()
 
-Tesla_ohlc.head()
+Stock_ohlc.head()
 
-Tesla_ohlc.reset_index(inplace=True)
+Stock_ohlc.reset_index(inplace=True)
 
 #Convert to mdates and candlestick
-Tesla_ohlc = csv["Adj Close"].resample("10D").ohlc() #Ohlc = Open, high, low, close. 10D = 10 days
-Tesla_volume = csv["Volume"].resample("10D").sum()
-Tesla_ohlc.reset_index(inplace=True)
+Stock_ohlc = csv["Adj Close"].resample("10D").ohlc() #Ohlc = Open, high, low, close. 10D = 10 days
+Stock_volume = csv["Volume"].resample("10D").sum()
+Stock_ohlc.reset_index(inplace=True)
 
-Tesla_ohlc["Date"] = Tesla_ohlc["Date"].map(mdates.date2num)
+Stock_ohlc["Date"] = Stock_ohlc["Date"].map(mdates.date2num)
 
 ax1 = plt.subplot2grid((6,1), (0,0), rowspan= 5, colspan=1)  
 ax2 = plt.subplot2grid((6,1), (5,0), rowspan= 5, colspan=1, sharex = ax1)
