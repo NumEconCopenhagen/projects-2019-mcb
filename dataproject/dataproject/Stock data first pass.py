@@ -70,14 +70,14 @@ ax2.fill_between(Tesla_volume.index.map(mdates.date2num), Tesla_volume.values, 0
 plt.show() #Candlestick and volume on the lower graph
 
 
-#Automating S&P500 
+#Automating S&P500 - From Yahoo Finance - Close price adjusted for splits, and Adj. Close price is adjusted for both dividends and splits.
 def save_sp500_tickers():
     resp = requests.get("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies")
     soup = bs.BeautifulSoup(resp.text, "lxml")
     table = soup.find("table", {"class": "wikitable sortable"})
     tickers = []
-    for row in table.findAll('tr')[1:]:
-        ticker = row.findAll('td')[1].text.replace('.','-')
+    for row in table.findAll("tr")[1:]:
+        ticker = row.findAll("td")[1].text.replace(".","-")
         tickers.append(ticker)
 
     with open("sp500tickers.pickle", "wb") as f:
@@ -106,6 +106,22 @@ def save_sp500_names():
         return(names)
 
 save_sp500_names()
+
+def sp_500GICS_sectors():
+    resp_GICS = requests.get("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies")
+    soup_GICS = bs.BeautifulSoup(resp.text, "lxml")
+    table_GICS = soup.find("table", {"class": "wikitable sortable"})
+    gics_sectors = []
+    for row in table_GICS.findAll("tr")[3:]:
+        gics_sector = row.findAll("td")[3].text.replace(".","-")
+        gics_sector.append(gics_sectors)
+
+    with open("sp500GICS.pickle","wb") as g:
+        pickle.dump(gics_sectors, g)
+
+        print(gics_sectors)
+        
+        return(gics_sectors)
 
 def data_yahoo(reload_sp500=False):
     if reload_sp500:
@@ -156,3 +172,4 @@ def compile_data():
 
 compile_data()
 
+#Scale y-axis wrt. Adj. Close prices. 
