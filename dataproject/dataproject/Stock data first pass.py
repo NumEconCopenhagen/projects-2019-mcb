@@ -110,3 +110,4 @@ def data_yahoo(reload_sp500=False):
 
 data_yahoo()
 
+#Combining all DFs into one single Dataframe
