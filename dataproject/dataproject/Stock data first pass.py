@@ -1,9 +1,17 @@
 #First pass
+"""
+write this in the Terminal:
+pip install https://github.com/matplotlib/mpl_finance/archive/master.zip
+
+And this:
+conda install -c anaconda pandas-datareader 
+
+"""
 import datetime as dt
 import matplotlib.pyplot as plt
 from matplotlib import style
 from mpl_finance import candlestick_ohlc
-import matplotlib.dates as mdates 
+import matplotlib.dates as mdates
 import pandas as pd
 import pandas_datareader as web
 import numpy as np
