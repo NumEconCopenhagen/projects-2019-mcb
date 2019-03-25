@@ -137,3 +137,4 @@ def compile_data():
     main_df.to_csv("sp500_joined_adj_closes.csv")
 
 compile_data()
+
