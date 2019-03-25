@@ -6,6 +6,16 @@ pip install https://github.com/matplotlib/mpl_finance/archive/master.zip
 And this:
 conda install -c anaconda pandas-datareader
 
+When asked:
+The following packages will be SUPERSEDED by a higher-priority channel:
+
+  ca-certificates                                 pkgs/main --> anaconda
+  certifi                                         pkgs/main --> anaconda
+  openssl                                         pkgs/main --> anaconda
+  qt                                              pkgs/main --> anaconda
+Proceed ([y]/n)?
+
+Press y
 """
 import datetime as dt
 import matplotlib.pyplot as plt
@@ -73,8 +83,8 @@ ax1 = plt.subplot2grid((6,1), (0,0), rowspan= 5, colspan=1)
 ax2 = plt.subplot2grid((6,1), (5,0), rowspan= 5, colspan=1, sharex = ax1)
 ax1.xaxis_date()
 
-candlestick_ohlc(ax1,Tesla_ohlc.values, width=2, colorup="g")
-ax2.fill_between(Tesla_volume.index.map(mdates.date2num), Tesla_volume.values, 0)
+candlestick_ohlc(ax1,Stock_ohlc.values, width=2, colorup="g")
+ax2.fill_between(Stock_volume.index.map(mdates.date2num), Tesla_volume.values, 0)
 plt.show() #Candlestick and volume on the lower graph
 
 
@@ -128,7 +138,7 @@ def sp_500GICS_sectors():
         pickle.dump(gics_sectors, g)
 
         print(gics_sectors)
-        
+
         return(gics_sectors)
 
 def data_yahoo(reload_sp500=False):
