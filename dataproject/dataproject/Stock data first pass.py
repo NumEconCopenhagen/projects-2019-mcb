@@ -122,10 +122,9 @@ def compile_data():
 
     for count, ticker in enumerate(tickers):
         df = pd.read_csv("stock_dfs/{}.csv".format(ticker))
-        df.set_index("date", inplace=True)
-
+        df.set_index("Date", inplace=True)
         df.rename(columns = {"Adj Close": ticker}, inplace=True) #Adj Close takes the Tickers place in the column - Simple rename
-        df.drop("Open","High","Low","Close","Volume",1, inplace=True)
+        df.drop(["Open","High","Low","Close","Volume"],1, inplace=True)
 
         if main_df.empty:
             main_df = df
