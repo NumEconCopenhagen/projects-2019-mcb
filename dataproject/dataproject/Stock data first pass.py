@@ -109,3 +109,4 @@ def data_yahoo(reload_sp500=False):
             print("Already have {}".format(ticker))
 
 data_yahoo()
+
