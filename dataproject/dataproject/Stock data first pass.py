@@ -98,16 +98,16 @@ def save_sp500_tickers():
 save_sp500_tickers()
 
 def save_sp500_names():
-    resp = requests.get("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies")
-    soup = bs.BeautifulSoup(resp.text, "lxml")
-    table = soup.find("table", {"class": "wikitable sortable"})
+    resp_names = requests.get("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies")
+    soup_names = bs.BeautifulSoup(resp_names.text, "lxml")
+    table_names = soup_names.find("table", {"class": "wikitable sortable"})
     names = []
-    for row in table.findAll('tr')[1:]:
-        name = row.findAll('td')[1].text.replace('.','-')
+    for row in table_names.findAll('tr')[1:]:
+        name = row.findAll('td')[0].text.replace('.','-')
         names.append(name)
 
-    with open("sp500names.pickle", "wb") as f:
-        pickle.dump(names, f)
+    with open("sp500names.pickle", "wb") as n:
+        pickle.dump(names, n)
 
         print(names)
 
@@ -115,14 +115,14 @@ def save_sp500_names():
 
 save_sp500_names()
 
-def sp_500GICS_sectors():
-    resp_GICS = requests.get("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies")
-    soup_GICS = bs.BeautifulSoup(resp.text, "lxml")
-    table_GICS = soup.find("table", {"class": "wikitable sortable"})
+def sp500_GICS_sectors():
+    resp_gics = requests.get("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies")
+    soup_gics = bs.BeautifulSoup(resp_gics.text, "lxml")
+    table_gics = soup_gics.find("table", {"class": "wikitable sortable"})
     gics_sectors = []
-    for row in table_GICS.findAll("tr")[3:]:
+    for row in table_gics.findAll("tr")[1:]:
         gics_sector = row.findAll("td")[3].text.replace(".","-")
-        gics_sector.append(gics_sectors)
+        gics_sectors.append(gics_sector)
 
     with open("sp500GICS.pickle","wb") as g:
         pickle.dump(gics_sectors, g)
@@ -130,6 +130,8 @@ def sp_500GICS_sectors():
         print(gics_sectors)
         
         return(gics_sectors)
+
+sp500_GICS_sectors()
 
 def data_yahoo(reload_sp500=False):
     if reload_sp500:
