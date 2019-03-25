@@ -4,7 +4,7 @@ write this in the Terminal:
 pip install https://github.com/matplotlib/mpl_finance/archive/master.zip
 
 And this:
-conda install -c anaconda pandas-datareader 
+conda install -c anaconda pandas-datareader
 
 """
 import datetime as dt
