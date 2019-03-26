@@ -108,7 +108,6 @@ def save_sp500_tickers():
 save_sp500_tickers()
 
 
-
 def save_sp500_names():
     resp_names = requests.get("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies")
     soup_names = bs.BeautifulSoup(resp_names.text, "lxml")
@@ -158,7 +157,7 @@ def data_yahoo(reload_sp500=False):
 
     start = dt.datetime(2000,1,1)
     end = dt.datetime.now()
-    
+
     for ticker in tickers:
         if not os.path.exists("stock_dfs/{}.csv".format(ticker)):
             df = web.DataReader(ticker, "yahoo", start, end)
