@@ -31,6 +31,7 @@ import requests
 import os
 style.use("ggplot")
 
+"""
 #Tesla
 start = dt.datetime(2000,1,1)
 end = (2016,12,31)
@@ -86,7 +87,7 @@ ax1.xaxis_date()
 candlestick_ohlc(ax1,Stock_ohlc.values, width=2, colorup="g")
 ax2.fill_between(Stock_volume.index.map(mdates.date2num), Stock_volume.values, 0)
 plt.show() #Candlestick and volume on the lower graph
-
+"""
 
 #Automating S&P500 - From Yahoo Finance - Close price adjusted for splits, and Adj. Close price is adjusted for both dividends and splits.
 def save_sp500_tickers_names_sectors():
@@ -133,7 +134,8 @@ def save_sp500_names():
         return(names)
 
 save_sp500_names()
-
+"""
+"""
 def sp500_GICS_sectors():
     resp_gics = requests.get("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies")
     soup_gics = bs.BeautifulSoup(resp_gics.text, "lxml")
@@ -195,7 +197,7 @@ def compile_data():
     for count, ticker in enumerate(tickers_names_sectors):
         df = pd.read_csv("stock_dfs/{}.csv".format(ticker))
         df.set_index("Date", inplace=True)
-        df.rename(columns = {"Adj Close": ticker}, inplace=True) #Adj Close takes the Tickers place in the column - Simple rename
+        df.rename(columns = {"Adj Close": ticker}, inplace=True) #Adj Close takes the categories place in the column - Simple rename
         df.drop(["Open","High","Low","Close","Volume"],1, inplace=True)
 
         if main_df.empty:
