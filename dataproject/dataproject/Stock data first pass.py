@@ -131,14 +131,8 @@ def save_sp500_tickers():
         return(categories)
 
 save_sp500_tickers()
-<<<<<<< HEAD
 """
 """
-=======
-
-
-
->>>>>>> 7a2ce6e90b9fed912892be914ec24bcfb5246f9b
 def save_sp500_names():
     resp_names = requests.get("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies")
     soup_names = bs.BeautifulSoup(resp_names.text, "lxml")
