@@ -49,9 +49,10 @@ indkp_vars = Dst.get_data(table_id="INDKP109", variables={"REGLAND":["000"], "TI
 #v = np.log(indkp_vars[['INDHOLD'], ['TID'=2015]]) #.values
 #v = indkp_vars['INDHOLD']
 v = np.log(indkp_vars['INDHOLD']) #.values
+vx = (indkp_vars['INDHOLD']) #.values
 
-print(v)
-print(v.max()) #oh shit
+print(vx)
+print(vx.max()) #oh shit
 
 
 # Plotting figure
@@ -68,4 +69,5 @@ plt.subplot(2, 1, 2)
 plt.hist(v, bins=20)
 
 def interactive_lorenz("REGLAND", "TID", "ENHED", "KOEN", "ALDER1", "HERKOMST")
+    
     
