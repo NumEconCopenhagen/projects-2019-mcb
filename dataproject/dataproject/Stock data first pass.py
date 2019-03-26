@@ -193,6 +193,57 @@ def compile_data():
 
 compile_data()
 
-#Combining 
+#Combining sector and name
+def compile_data_names():
+    with open("sp500names.pickle", "rb") as n:
+        names = pickle.load(n)
+
+    main_df = pd.DataFrame()
+
+    #Iterating though all DFs
+
+    for count, name in enumerate(names):
+        df = pd.read_csv("stock_dfs/{}.csv".format(name))
+        #df.set_index("Date", inplace=True)
+        #df.rename(columns = {"Adj Close": ticker}, inplace=True) #Adj Close takes the Tickers place in the column - Simple rename
+        #df.drop(["Open","High","Low","Close","Volume"],1, inplace=True)
+
+        if main_df.empty:
+            main_df = df
+        else:
+            main_df = main_df.join(df, how="outer")
+        
+        if count % 10 == 0: #Only print #10, #20, #30, etc.
+            print(count)
+    print(main_df.head())
+    main_df.to_csv("sp500_joined_adj_closes.csv")
+
+compile_data_names()
+
+def compile_data_sectors():
+    with open("sp500GICS.pickle", "rb") as g:
+        sectors = pickle.load(g)
+
+    main_df = pd.DataFrame()
+
+    #Iterating though all DFs
+
+    for count, sector in enumerate(sectors):
+        df = pd.read_csv("stock_dfs/{}.csv".format(name))
+        #df.set_index("Date", inplace=True)
+        #df.rename(columns = {"Adj Close": ticker}, inplace=True) #Adj Close takes the Tickers place in the column - Simple rename
+        #df.drop(["Open","High","Low","Close","Volume"],1, inplace=True)
+
+        if main_df.empty:
+            main_df = df
+        else:
+            main_df = main_df.join(df, how="outer")
+        
+        if count % 10 == 0: #Only print #10, #20, #30, etc.
+            print(count)
+    print(main_df.head())
+    main_df.to_csv("sp500_joined_adj_closes.csv")
+
+compile_data_sectors()
 
 #Scale y-axis wrt. Adj. Close prices. 
