@@ -246,4 +246,6 @@ def compile_data_sectors():
 
 compile_data_sectors()
 
+
+
 #Scale y-axis wrt. Adj. Close prices. 
