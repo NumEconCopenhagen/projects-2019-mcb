@@ -198,7 +198,7 @@ print(my_dict_final)
 """
 def compile_data():
     with open("sp500tickers_names_sectors.pickle", "rb") as f:
-        tickers = pickle.load(f)
+        tickers_names_sectors = pickle.load(f)
 
     main_df = pd.DataFrame()
 
