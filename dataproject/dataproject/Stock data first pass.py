@@ -167,6 +167,13 @@ data_yahoo()
 
 #Combining all DFs into one single Dataframe
 
+my_dict_final = {}  # Create an empty dictionary
+with open('pickle_file1', 'rb') as f:
+    my_dict_final.update(pickle.load(f))   # Update contents of file1 to the dictionary
+with open('pickle_file2', 'rb') as f:
+    my_dict_final.update(pickle.load(f))   # Update contents of file2 to the dictionary
+print my_dict_final
+
 def compile_data():
     with open("sp500tickers.pickle", "rb") as f:
         tickers = pickle.load(f)
@@ -192,59 +199,6 @@ def compile_data():
     main_df.to_csv("sp500_joined_adj_closes.csv")
 
 compile_data()
-
-#Combining sector and name
-def compile_data_names():
-    with open("sp500names.pickle", "rb") as n:
-        names = pickle.load(n)
-
-    main_df = pd.DataFrame()
-
-    #Iterating though all DFs
-
-    for count, name in enumerate(names):
-        df = pd.read_csv("stock_dfs/{}.csv".format(names))
-        #df.set_index("Date", inplace=True)
-        #df.rename(columns = {"Adj Close": ticker}, inplace=True) #Adj Close takes the Tickers place in the column - Simple rename
-        #df.drop(["Open","High","Low","Close","Volume"],1, inplace=True)
-
-        if main_df.empty:
-            main_df = df
-        else:
-            main_df = main_df.join(df, how="outer")
-        
-        if count % 10 == 0: #Only print #10, #20, #30, etc.
-            print(count)
-    print(main_df.head())
-    main_df.to_csv("sp500_joined_adj_closes.csv")
-
-compile_data_names()
-
-def compile_data_sectors():
-    with open("sp500GICS.pickle", "rb") as g:
-        sectors = pickle.load(g)
-
-    main_df = pd.DataFrame()
-
-    #Iterating though all DFs
-
-    for count, sector in enumerate(sectors):
-        df = pd.read_csv("stock_dfs/{}.csv".format(name))
-        #df.set_index("Date", inplace=True)
-        #df.rename(columns = {"Adj Close": ticker}, inplace=True) #Adj Close takes the Tickers place in the column - Simple rename
-        #df.drop(["Open","High","Low","Close","Volume"],1, inplace=True)
-
-        if main_df.empty:
-            main_df = df
-        else:
-            main_df = main_df.join(df, how="outer")
-        
-        if count % 10 == 0: #Only print #10, #20, #30, etc.
-            print(count)
-    print(main_df.head())
-    main_df.to_csv("sp500_joined_adj_closes.csv")
-
-compile_data_sectors()
 
 
 
