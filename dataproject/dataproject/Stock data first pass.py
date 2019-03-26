@@ -94,20 +94,18 @@ def save_sp500_tickers_names_sectors():
     resp = requests.get("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies")
     soup = bs.BeautifulSoup(resp.text, "lxml")
     table = soup.find("table", {"class": "wikitable sortable"})
-    tickers = []
+    tickers_names_sectors = []
     for row in table.findAll("tr")[1:]:
         ticker = row.findAll("td")[1].text.replace(".","-")
-        tickers.append(ticker)
+        tickers_names_sectors.append(ticker)
 
-    names = []
     for row in table.findAll('tr')[1:]:
         name = row.findAll('td')[0].text.replace('.','-')
-        names.append(name)
+        tickers_names_sectors.append(name)
 
-    sectors = []
     for row in table.findAll("tr")[1:]:
         gics_sector = row.findAll("td")[3].text.replace(".","-")
-        sectors.append(gics_sector)
+        tickers_names_sectors.append(gics_sector)
 
     with open("sp500tickers_names_sectors.pickle", "wb") as f:
         pickle.dump(tickers_names_sectors, f)
