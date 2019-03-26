@@ -186,6 +186,7 @@ with open('pickle_file2', 'rb') as f:
     my_dict_final.update(pickle.load(f))   # Update contents of file2 to the dictionary
 print(my_dict_final)
 """
+
 def compile_data():
     with open("sp500tickers_names_sectors.pickle", "rb") as f:
         tickers_names_sectors = pickle.load(f)
@@ -211,7 +212,6 @@ def compile_data():
     main_df.to_csv("sp500_joined_adj_closes.csv")
 
 compile_data()
-
 
 
 #Scale y-axis wrt. Adj. Close prices. 
