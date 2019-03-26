@@ -164,12 +164,25 @@ def data_yahoo(reload_sp500=False):
 
     start = dt.datetime(2000,1,1)
     end = dt.datetime.now()
+    
     for ticker in tickers_names_sectors:
         if not os.path.exists("stock_dfs/{}.csv".format(ticker)):
             df = web.DataReader(ticker, "yahoo", start, end)
             df.to_csv("stock_dfs/{}.csv".format(ticker))
         else:
             print("Already have {}".format(ticker))
+    for name in tickers_names_sectors: 
+        if not os.path.exists("stock_dfs/{}.csv".format(name)):
+            df = web.DataReader(name, "yahoo", start, end)
+            df.to_csv("stock_dfs/{}.csv".format(name))
+        else:
+            print("Already have {}".format(name))    
+    for sector in tickers_names_sectors: 
+        if not os.path.exists("stock_dfs/{}.csv".format(sector)):
+            df = web.DataReader(sector, "yahoo", start, end)
+            df.to_csv("stock_dfs/{}.csv".format(sector))
+        else:
+            print("Already have {}".format(sector))  
 
 data_yahoo()
 
