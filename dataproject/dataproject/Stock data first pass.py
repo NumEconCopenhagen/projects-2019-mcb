@@ -89,24 +89,32 @@ plt.show() #Candlestick and volume on the lower graph
 
 
 #Automating S&P500 - From Yahoo Finance - Close price adjusted for splits, and Adj. Close price is adjusted for both dividends and splits.
-def save_sp500_tickers():
+def save_sp500_tickers_names_sectors():
     resp = requests.get("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies")
     soup = bs.BeautifulSoup(resp.text, "lxml")
     table = soup.find("table", {"class": "wikitable sortable"})
-    tickers = []
+    tickers_names_sectors = []
     for row in table.findAll("tr")[1:]:
         ticker = row.findAll("td")[1].text.replace(".","-")
-        tickers.append(ticker)
+        tickers_names_sectors.append(ticker)
+
+    for row in table.findAll('tr')[1:]:
+        name = row.findAll('td')[0].text.replace('.','-')
+        tickers_names_sectors.append(name)
+
+    for row in table.findAll("tr")[1:]:
+        gics_sector = row.findAll("td")[3].text.replace(".","-")
+        tickers_names_sectors.append(gics_sector)
 
     with open("sp500tickers.pickle", "wb") as f:
-        pickle.dump(tickers, f)
+        pickle.dump(tickers_names_sectors, f)
 
-        print(tickers)
+        print(tickers_names_sectors)
 
-        return(tickers)
+        return(tickers_names_sectors)
 
-save_sp500_tickers()
-
+save_sp500_tickers_names_sectors()
+""""
 def save_sp500_names():
     resp_names = requests.get("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies")
     soup_names = bs.BeautifulSoup(resp_names.text, "lxml")
@@ -142,13 +150,13 @@ def sp500_GICS_sectors():
         return(gics_sectors)
 
 sp500_GICS_sectors()
-
+"""
 #Getting data from Yahoo
 def data_yahoo(reload_sp500=False):
     if reload_sp500:
         tickers = save_sp500_tickers()
     else:
-        with open("sp500tickers.pickle", "rb") as f:
+        with open("sp500tickers_names_sectors.pickle", "rb") as f:
             tickers = pickle.load(f)
 
     if not os.path.exists("stock_dfs"):
@@ -167,12 +175,6 @@ data_yahoo()
 
 #Combining all DFs into one single Dataframe
 
-my_dict_final = {}  # Create an empty dictionary
-with open('pickle_file1', 'rb') as f:
-    my_dict_final.update(pickle.load(f))   # Update contents of file1 to the dictionary
-with open('pickle_file2', 'rb') as f:
-    my_dict_final.update(pickle.load(f))   # Update contents of file2 to the dictionary
-print my_dict_final
 
 def compile_data():
     with open("sp500tickers.pickle", "rb") as f:
@@ -199,7 +201,5 @@ def compile_data():
     main_df.to_csv("sp500_joined_adj_closes.csv")
 
 compile_data()
-
-
 
 #Scale y-axis wrt. Adj. Close prices. 
