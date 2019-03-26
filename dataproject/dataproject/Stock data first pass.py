@@ -203,7 +203,7 @@ def compile_data_names():
     #Iterating though all DFs
 
     for count, name in enumerate(names):
-        df = pd.read_csv("stock_dfs/{}.csv".format(name))
+        df = pd.read_csv("stock_dfs/{}.csv".format(names))
         #df.set_index("Date", inplace=True)
         #df.rename(columns = {"Adj Close": ticker}, inplace=True) #Adj Close takes the Tickers place in the column - Simple rename
         #df.drop(["Open","High","Low","Close","Volume"],1, inplace=True)
