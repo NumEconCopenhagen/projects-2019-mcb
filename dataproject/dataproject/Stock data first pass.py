@@ -90,31 +90,23 @@ plt.show() #Candlestick and volume on the lower graph
 """
 
 #Automating S&P500 - From Yahoo Finance - Close price adjusted for splits, and Adj. Close price is adjusted for both dividends and splits.
-def save_sp500_tickers_names_sectors():
+def save_sp500_tickers():
     resp = requests.get("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies")
     soup = bs.BeautifulSoup(resp.text, "lxml")
     table = soup.find("table", {"class": "wikitable sortable"})
-    tickers_names_sectors = []
+    tickers = []
     for row in table.findAll("tr")[1:]:
         ticker = row.findAll("td")[1].text.replace(".","-")
-        tickers_names_sectors.append(ticker)
+        tickers.append(ticker)
 
-    for row in table.findAll('tr')[1:]:
-        name = row.findAll('td')[0].text.replace('.','-')
-        tickers_names_sectors.append(name)
+    with open("sp500tickers.pickle", "wb") as f:
+        pickle.dump(tickers, f)
 
-    for row in table.findAll("tr")[1:]:
-        gics_sector = row.findAll("td")[3].text.replace(".","-")
-        tickers_names_sectors.append(gics_sector)
+        print(tickers)
 
-    with open("sp500tickers_names_sectors.pickle", "wb") as f:
-        pickle.dump(tickers_names_sectors, f)
+        return(tickers)
 
-        print(tickers_names_sectors)
-
-        return(tickers_names_sectors)
-
-save_sp500_tickers_names_sectors()
+save_sp500_tickers()
 
 """
 def save_sp500_names():
@@ -157,10 +149,10 @@ sp500_GICS_sectors()
 #Getting data from Yahoo
 def data_yahoo(reload_sp500=False):
     if reload_sp500:
-        tickers_names_sectors = save_sp500_tickers_names_sectors()
+        tickers = save_sp500_tickers()
     else:
-        with open("sp500tickers_names_sectors.pickle", "rb") as f:
-            tickers_names_sectors = pickle.load(f)
+        with open("sp500tickers.pickle", "rb") as f:
+            tickers = pickle.load(f)
 
     if not os.path.exists("stock_dfs"):
         os.makedirs("stock_dfs")
@@ -168,9 +160,9 @@ def data_yahoo(reload_sp500=False):
     start = dt.datetime(2000,1,1)
     end = dt.datetime.now()
 
-    for ticker in tickers_names_sectors:
+    for ticker in tickers:
         if not os.path.exists("stock_dfs/{}.csv".format(ticker)):
-            df = web.DataReader(tickers_names_sectors, "yahoo", start, end)
+            df = web.DataReader(tickers, "yahoo", start, end)
             df.to_csv("stock_dfs/{}.csv".format(ticker))
         else:
             print("Already have {}".format(ticker))
@@ -188,14 +180,14 @@ print(my_dict_final)
 """
 
 def compile_data():
-    with open("sp500tickers_names_sectors.pickle", "rb") as f:
-        tickers_names_sectors = pickle.load(f)
+    with open("sp500tickers.pickle", "rb") as f:
+        tickers = pickle.load(f)
 
     main_df = pd.DataFrame()
 
     #Iterating though all DFs
 
-    for count, ticker in enumerate(tickers_names_sectors):
+    for count, ticker in enumerate(tickers):
         df = pd.read_csv("stock_dfs/{}.csv".format(ticker))
         df.set_index("Date", inplace=True)
         df.rename(columns = {"Adj Close": ticker}, inplace=True) #Adj Close takes the categories place in the column - Simple rename
@@ -212,6 +204,7 @@ def compile_data():
     main_df.to_csv("sp500_joined_adj_closes.csv")
 
 compile_data()
+
 
 
 #Scale y-axis wrt. Adj. Close prices. 
