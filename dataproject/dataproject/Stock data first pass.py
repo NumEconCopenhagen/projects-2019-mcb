@@ -154,17 +154,17 @@ sp500_GICS_sectors()
 #Getting data from Yahoo
 def data_yahoo(reload_sp500=False):
     if reload_sp500:
-        tickers = save_sp500_tickers_names_sectors()
+        tickers_names_sectors = save_sp500_tickers_names_sectors()
     else:
         with open("sp500tickers_names_sectors.pickle", "rb") as f:
-            tickers = pickle.load(f)
+            tickers_names_sectors = pickle.load(f)
 
     if not os.path.exists("stock_dfs"):
         os.makedirs("stock_dfs")
 
     start = dt.datetime(2000,1,1)
     end = dt.datetime.now()
-    for ticker in tickers:
+    for ticker in tickers_names_sectors:
         if not os.path.exists("stock_dfs/{}.csv".format(ticker)):
             df = web.DataReader(ticker, "yahoo", start, end)
             df.to_csv("stock_dfs/{}.csv".format(ticker))
