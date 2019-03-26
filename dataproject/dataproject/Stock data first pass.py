@@ -131,8 +131,14 @@ def save_sp500_tickers():
         return(categories)
 
 save_sp500_tickers()
+<<<<<<< HEAD
 """
 """
+=======
+
+
+
+>>>>>>> 7a2ce6e90b9fed912892be914ec24bcfb5246f9b
 def save_sp500_names():
     resp_names = requests.get("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies")
     soup_names = bs.BeautifulSoup(resp_names.text, "lxml")
@@ -212,7 +218,14 @@ def data_yahoo(reload_sp500=False):
 data_yahoo()
 
 #Combining all DFs into one single Dataframe
-
+"""
+my_dict_final = {}  # Create an empty dictionary
+with open('pickle_file1', 'rb') as f:
+    my_dict_final.update(pickle.load(f))   # Update contents of file1 to the dictionary
+with open('pickle_file2', 'rb') as f:
+    my_dict_final.update(pickle.load(f))   # Update contents of file2 to the dictionary
+print(my_dict_final)
+"""
 def compile_data():
     with open("sp500tickers.pickle", "rb") as f:
         categories = pickle.load(f)
@@ -238,5 +251,7 @@ def compile_data():
     main_df.to_csv("sp500_joined_adj_closes.csv")
 
 compile_data()
+
+
 
 #Scale y-axis wrt. Adj. Close prices. 
