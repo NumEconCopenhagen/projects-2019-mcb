@@ -29,6 +29,8 @@ import bs4 as bs
 import pickle
 import requests
 import os
+import csv
+from six.moves import cPickle as pickle
 style.use("ggplot")
 
 """
@@ -101,14 +103,15 @@ def save_sp500_tickers():
 
     with open("sp500tickers.pickle", "wb") as f:
         pickle.dump(tickers, f)
-
+    
         print(tickers)
 
         return(tickers)
+    
 
 save_sp500_tickers()
 
-"""
+
 def save_sp500_names():
     resp_names = requests.get("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies")
     soup_names = bs.BeautifulSoup(resp_names.text, "lxml")
@@ -117,17 +120,20 @@ def save_sp500_names():
     for row in table_names.findAll('tr')[1:]:
         name = row.findAll('td')[0].text.replace('.','-')
         names.append(name)
-
+        df_names = pd.DataFrame(names)
+        df_names.to_csv("sp500names.csv")
+        
     with open("sp500names.pickle", "wb") as n:
         pickle.dump(names, n)
-
+    
         print(names)
 
         return(names)
-
+    
 save_sp500_names()
-"""
-"""
+
+df_names = pd.read_csv("sp500names.csv")
+
 def sp500_GICS_sectors():
     resp_gics = requests.get("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies")
     soup_gics = bs.BeautifulSoup(resp_gics.text, "lxml")
@@ -136,6 +142,8 @@ def sp500_GICS_sectors():
     for row in table_gics.findAll("tr")[1:]:
         gics_sector = row.findAll("td")[3].text.replace(".","-")
         gics_sectors.append(gics_sector)
+        df_sectors = pd.DataFrame(gics_sectors)
+        df_sectors.to_csv("sp500sectors.csv")
 
     with open("sp500GICS.pickle","wb") as g:
         pickle.dump(gics_sectors, g)
@@ -145,7 +153,9 @@ def sp500_GICS_sectors():
         return(gics_sectors)
 
 sp500_GICS_sectors()
-"""
+
+df_sectors = pd.read_csv("sp500sectors.csv")
+
 #Getting data from Yahoo
 def data_yahoo(reload_sp500=False):
     if reload_sp500:
@@ -168,6 +178,7 @@ def data_yahoo(reload_sp500=False):
             print("Already have {}".format(ticker))
 
 data_yahoo()
+
 
 #Combining all DFs into one single Dataframe
 """
@@ -192,7 +203,7 @@ def compile_data():
         df.set_index("Date", inplace=True)
         df.rename(columns = {"Adj Close": ticker}, inplace=True) #Adj Close takes the categories place in the column - Simple rename
         df.drop(["Open","High","Low","Close","Volume"],1, inplace=True)
-
+    
         if main_df.empty:
             main_df = df
         else:
@@ -206,5 +217,9 @@ def compile_data():
 compile_data()
 
 
+tickers_joined_df = pd.read_csv("sp500_joined_adj_closes.csv")
+
+#tickers_and_names_df = tickers_joined_df.append(df_names, sort=False)
+#print(tickers_and_names_df)
 
 #Scale y-axis wrt. Adj. Close prices. 
