@@ -112,49 +112,49 @@ def save_sp500_tickers():
 save_sp500_tickers()
 
 
-def save_sp500_names():
-    resp_names = requests.get("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies")
-    soup_names = bs.BeautifulSoup(resp_names.text, "lxml")
-    table_names = soup_names.find("table", {"class": "wikitable sortable"})
-    names = []
-    for row in table_names.findAll('tr')[1:]:
-        name = row.findAll('td')[0].text.replace('.','-')
-        names.append(name)
-        df_names = pd.DataFrame(names)
-        df_names.to_csv("sp500names.csv")
+# def save_sp500_names():
+#     resp_names = requests.get("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies")
+#     soup_names = bs.BeautifulSoup(resp_names.text, "lxml")
+#     table_names = soup_names.find("table", {"class": "wikitable sortable"})
+#     names = []
+#     for row in table_names.findAll('tr')[1:]:
+#         name = row.findAll('td')[0].text.replace('.','-')
+#         names.append(name)
+#         df_names = pd.DataFrame(names)
+#         df_names.to_csv("sp500names.csv")
         
-    with open("sp500names.pickle", "wb") as n:
-        pickle.dump(names, n)
+#     with open("sp500names.pickle", "wb") as n:
+#         pickle.dump(names, n)
     
-        print(names)
+#         print(names)
 
-        return(names)
+#         return(names)
     
-save_sp500_names()
+# save_sp500_names()
 
-df_names = pd.read_csv("sp500names.csv")
+# df_names = pd.read_csv("sp500names.csv")
 
-def sp500_GICS_sectors():
-    resp_gics = requests.get("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies")
-    soup_gics = bs.BeautifulSoup(resp_gics.text, "lxml")
-    table_gics = soup_gics.find("table", {"class": "wikitable sortable"})
-    gics_sectors = []
-    for row in table_gics.findAll("tr")[1:]:
-        gics_sector = row.findAll("td")[3].text.replace(".","-")
-        gics_sectors.append(gics_sector)
-        df_sectors = pd.DataFrame(gics_sectors)
-        df_sectors.to_csv("sp500sectors.csv")
+# def sp500_GICS_sectors():
+#     resp_gics = requests.get("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies")
+#     soup_gics = bs.BeautifulSoup(resp_gics.text, "lxml")
+#     table_gics = soup_gics.find("table", {"class": "wikitable sortable"})
+#     gics_sectors = []
+#     for row in table_gics.findAll("tr")[1:]:
+#         gics_sector = row.findAll("td")[3].text.replace(".","-")
+#         gics_sectors.append(gics_sector)
+#         df_sectors = pd.DataFrame(gics_sectors)
+#         df_sectors.to_csv("sp500sectors.csv")
 
-    with open("sp500GICS.pickle","wb") as g:
-        pickle.dump(gics_sectors, g)
+#     with open("sp500GICS.pickle","wb") as g:
+#         pickle.dump(gics_sectors, g)
 
-        print(gics_sectors)
+#         print(gics_sectors)
 
-        return(gics_sectors)
+#         return(gics_sectors)
 
-sp500_GICS_sectors()
+# sp500_GICS_sectors()
 
-df_sectors = pd.read_csv("sp500sectors.csv")
+# df_sectors = pd.read_csv("sp500sectors.csv")
 
 #Getting data from Yahoo
 def data_yahoo(reload_sp500=False):
@@ -206,10 +206,14 @@ def compile_data():
 
 compile_data()
 
-#Laver dem om til DataFrames - måske det hjælper?
-tickers_joined_df = pd.read_csv("sp500_joined_adj_closes.csv")
-sp500names_df = pd.read_csv("sp500names.csv")
-sp500sectors_df = pd.read_csv("sp500sectors.csv")
 
+def Figure_hist_Pct_Change(column = tickers):
 
-#Scale y-axis wrt. Adj. Close prices. 
+    df_AdjClosed = pd.read_csv("sp500_joined_adj_closes.csv")
+    df_AdjClosed.set_index('Date', inplace=True)
+    df_AdjClosed = df_AdjClosed.pct_change()
+
+    with open("sp500tickers.pickle", "rb") as f:
+        tickers = pickle.load(f)
+
+Figure_hist_Pct_Change()
