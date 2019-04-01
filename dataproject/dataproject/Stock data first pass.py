@@ -33,7 +33,7 @@ import csv
 from six.moves import cPickle as pickle
 style.use("ggplot")
 
-"""
+
 #Tesla
 start = dt.datetime(2000,1,1)
 end = (2016,12,31)
@@ -89,7 +89,7 @@ ax1.xaxis_date()
 candlestick_ohlc(ax1,Stock_ohlc.values, width=2, colorup="g")
 ax2.fill_between(Stock_volume.index.map(mdates.date2num), Stock_volume.values, 0)
 plt.show() #Candlestick and volume on the lower graph
-"""
+
 
 #Automating S&P500 - From Yahoo Finance - Close price adjusted for splits, and Adj. Close price is adjusted for both dividends and splits.
 def save_sp500_tickers():
@@ -180,16 +180,6 @@ def data_yahoo(reload_sp500=False):
 data_yahoo()
 
 
-#Combining all DFs into one single Dataframe
-"""
-my_dict_final = {}  # Create an empty dictionary
-with open('pickle_file1', 'rb') as f:
-    my_dict_final.update(pickle.load(f))   # Update contents of file1 to the dictionary
-with open('pickle_file2', 'rb') as f:
-    my_dict_final.update(pickle.load(f))   # Update contents of file2 to the dictionary
-print(my_dict_final)
-"""
-
 def compile_data():
     with open("sp500tickers.pickle", "rb") as f:
         tickers = pickle.load(f)
@@ -216,10 +206,10 @@ def compile_data():
 
 compile_data()
 
-
+#Laver dem om til DataFrames - måske det hjælper?
 tickers_joined_df = pd.read_csv("sp500_joined_adj_closes.csv")
+sp500names_df = pd.read_csv("sp500names.csv")
+sp500sectors_df = pd.read_csv("sp500sectors.csv")
 
-#tickers_and_names_df = tickers_joined_df.append(df_names, sort=False)
-#print(tickers_and_names_df)
 
 #Scale y-axis wrt. Adj. Close prices. 
