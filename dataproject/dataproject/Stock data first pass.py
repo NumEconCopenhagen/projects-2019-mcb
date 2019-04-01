@@ -92,7 +92,7 @@ plt.show() #Candlestick and volume on the lower graph
 
 
 #Automating S&P500 - From Yahoo Finance - Close price adjusted for splits, and Adj. Close price is adjusted for both dividends and splits.
-def save_sp500_tickers_names_sectors():
+def save_sp500_tickers():
     resp = requests.get("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies")
     soup = bs.BeautifulSoup(resp.text, "lxml")
     table = soup.find("table", {"class": "wikitable sortable"})
@@ -101,22 +101,6 @@ def save_sp500_tickers_names_sectors():
         ticker = row.findAll("td")[1].text.replace(".","-")
         tickers_names_sectors.append(ticker)
 
-<<<<<<< HEAD
-    for row in table.findAll('tr')[1:]:
-        name = row.findAll('td')[0].text.replace('.','-')
-        tickers_names_sectors.append(name)
-
-    for row in table.findAll("tr")[1:]:
-        gics_sector = row.findAll("td")[3].text.replace(".","-")
-        tickers_names_sectors.append(gics_sector)
-
-    with open("sp500tickers_names_sectors.pickle", "wb") as f:
-        pickle.dump(tickers_names_sectors, f)
-
-        print(tickers_names_sectors)
-
-        return(tickers_names_sectors)
-=======
     with open("sp500tickers.pickle", "wb") as f:
         pickle.dump(tickers, f)
     
@@ -124,9 +108,8 @@ def save_sp500_tickers_names_sectors():
 
         return(tickers)
     
->>>>>>> 167983f110b42fdd8e1939e8b45f38460d74a16b
 
-save_sp500_tickers_names_sectors()
+save_sp500_tickers()
 
 
 # def save_sp500_names():
@@ -176,9 +159,9 @@ save_sp500_tickers_names_sectors()
 #Getting data from Yahoo
 def data_yahoo(reload_sp500=False):
     if reload_sp500:
-        tickers_names_sectors = save_sp500_tickers_names_sectors()
+        tickers = save_sp500_tickers()
     else:
-        with open("sp500tickers_names_sectors.pickle", "rb") as f:
+        with open("sp500tickers.pickle", "rb") as f:
             tickers_names_sectors = pickle.load(f)
 
     if not os.path.exists("stock_dfs"):
@@ -198,16 +181,17 @@ data_yahoo()
 
 
 def compile_data():
-    with open("sp500tickers_names_sectors.pickle", "rb") as f:
-        tickers_names_sectors = pickle.load(f)
+    with open("sp500tickers.pickle", "rb") as f:
+        tickers = pickle.load(f)
 
     main_df = pd.DataFrame()
 
     #Iterating though all DFs
 
-    for count, ticker in enumerate(tickers_names_sectors):
+    for count, ticker in enumerate(tickers):
         df = pd.read_csv("stock_dfs/{}.csv".format(ticker))
         df.set_index("Date", inplace=True)
+        df = df.pct_change()
         df.rename(columns = {"Adj Close": ticker}, inplace=True) #Adj Close takes the categories place in the column - Simple rename
         df.drop(["Open","High","Low","Close","Volume"],1, inplace=True)
     
@@ -223,14 +207,45 @@ def compile_data():
 
 compile_data()
 
+sp_gspc_index = web.DataReader("^GSPC",data_source = "yahoo", start = "1/1/2000")
+sp_gspc_index.to_csv("spIndex.csv")
+df_sp_index = pd.read_csv("spIndex.csv", parse_dates=True, index_col=0)
+df_sp_index.set_index("Date", inplace=True)
 
-def Figure_hist_Pct_Change(column = tickers):
+print(df_sp_index)
 
-    df_AdjClosed = pd.read_csv("sp500_joined_adj_closes.csv")
-    df_AdjClosed.set_index('Date', inplace=True)
-    df_AdjClosed = df_AdjClosed.pct_change()
+df_new_sp_index = df_sp_index["Adj Close"].pct_change()
 
-    with open("sp500tickers.pickle", "rb") as f:
-        tickers = pickle.load(f)
+#Convert to mdates and candlestick
+Stock_ohlc = df_new_sp_index.resample("10D").ohlc() #Ohlc = Open, high, low, close. 10D = 10 days
+Stock_ohlc.reset_index(inplace=True)
 
-Figure_hist_Pct_Change()
+Stock_ohlc["Date"] = Stock_ohlc["Date"].map(mdates.date2num)
+
+ax1 = plt.subplot2grid((6,1), (0,0), rowspan= 5, colspan=1)  
+ax1.xaxis_date()
+
+candlestick_ohlc(ax1,Stock_ohlc.values, width=2, colorup="g")
+plt.show() 
+
+
+
+
+
+
+
+
+
+
+
+
+# def Figure_hist_Pct_Change(column = tickers):
+
+#     df_AdjClosed = pd.read_csv("sp500_joined_adj_closes.csv")
+#     df_AdjClosed.set_index('Date', inplace=True)
+#     df_AdjClosed = df_AdjClosed.pct_change()
+
+#     with open("sp500tickers.pickle", "rb") as f:
+#         tickers = pickle.load(f)
+
+# Figure_hist_Pct_Change()
