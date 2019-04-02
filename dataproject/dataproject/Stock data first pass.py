@@ -40,7 +40,8 @@ end = (2016,12,31)
 
 Stock = web.DataReader("TSLA", data_source = "yahoo", start="1/1/2010")
 df_helper = Stock["Adj Close"]
-df_index = df_helper/df_helper[0]*100
+df_index = df_helper.div(df_helper[0])*100
+
 
 print(df_index)
 
@@ -166,24 +167,20 @@ def data_yahoo(reload_sp500=False):
     else:
         with open("sp500tickers.pickle", "rb") as f:
             tickers = pickle.load(f)
+    if not os.path.exists('stock_dfs'):
+        os.makedirs('stock_dfs')
 
-    if not os.path.exists("stock_dfs"):
-        os.makedirs("stock_dfs")
-
-    start = dt.datetime(2019,1,1)
+    start = dt.datetime(2010, 1, 1)
     end = dt.datetime.now()
-
     for ticker in tickers:
-        if not os.path.exists("stock_dfs/{}.csv".format(ticker)):
-            df = web.DataReader(tickers, "yahoo", start, end)
-            df_helper = df["Adj Close"]
-            df_index = df_helper/df_helper[0]*100
-            df_index.to_csv("stock_dfs/{}.csv".format(ticker))
+        # just in case your connection breaks, we'd like to save our progress!
+        if not os.path.exists('stock_dfs/{}.csv'.format(ticker)):
+            df = web.DataReader(ticker, 'yahoo', start, end)
+            df.to_csv('stock_dfs/{}.csv'.format(ticker))
         else:
-            print("Already have {}".format(ticker))
+            print('Already have {}'.format(ticker))
 
 data_yahoo()
-
 
 
 def compile_data():
@@ -199,6 +196,7 @@ def compile_data():
         df.set_index("Date", inplace=True)
         df.rename(columns = {"Adj Close": ticker}, inplace=True) #Adj Close takes the categories place in the column - Simple rename
         df.drop(["Open","High","Low","Close","Volume"],1, inplace=True)
+        df = df.divide(df.iloc[0])*100
     
         if main_df.empty:
             main_df = df
