@@ -39,7 +39,10 @@ start = dt.datetime(2000,1,1)
 end = (2016,12,31)
 
 Stock = web.DataReader("TSLA", data_source = "yahoo", start="1/1/2010")
-Stock.head(100)
+df_helper = Stock["Adj Close"]
+df_index = df_helper/df_helper[0]*100
+
+print(df_index)
 
 #Tesla.to_excel("TSLA.xls") #Laver en Excel fil
 Stock.to_csv("Stock.csv")
@@ -167,22 +170,19 @@ def data_yahoo(reload_sp500=False):
     if not os.path.exists("stock_dfs"):
         os.makedirs("stock_dfs")
 
-    start = dt.datetime(2000,1,1)
+    start = dt.datetime(2019,1,1)
     end = dt.datetime.now()
 
     for ticker in tickers:
         if not os.path.exists("stock_dfs/{}.csv".format(ticker)):
             df = web.DataReader(tickers, "yahoo", start, end)
-            df = df/df[0]
-            df.to_csv("stock_dfs/{}.csv".format(ticker))
+            df_helper = df["Adj Close"]
+            df_index = df_helper/df_helper[0]*100
+            df_index.to_csv("stock_dfs/{}.csv".format(ticker))
         else:
             print("Already have {}".format(ticker))
 
 data_yahoo()
-
-
-
-
 
 
 
@@ -229,23 +229,6 @@ print(df_index_data_new)
 df_index_data_new = df_index_data_new/df_index_data_new[0]*100
 print(df_index_data_new)
 df_index_data_new.plot()
-
-
-
-
-
-
-
-
-
-index_list = df_index_data_new.values.tolist()
-print(index_list)
-
-index_list_done = lambda v: (v / index_list[0])*100
-[index_list_done(v) for v in index_list]
-
-df_index_data = pd.DataFrame(index_list_done, columns = ["S&P500 return"])
-
 
 
 
