@@ -96,10 +96,10 @@ def save_sp500_tickers():
     resp = requests.get("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies")
     soup = bs.BeautifulSoup(resp.text, "lxml")
     table = soup.find("table", {"class": "wikitable sortable"})
-    tickers_names_sectors = []
+    tickers = []
     for row in table.findAll("tr")[1:]:
         ticker = row.findAll("td")[1].text.replace(".","-")
-        tickers_names_sectors.append(ticker)
+        tickers.append(ticker)
 
     with open("sp500tickers.pickle", "wb") as f:
         pickle.dump(tickers, f)
@@ -162,7 +162,7 @@ def data_yahoo(reload_sp500=False):
         tickers = save_sp500_tickers()
     else:
         with open("sp500tickers.pickle", "rb") as f:
-            tickers_names_sectors = pickle.load(f)
+            tickers = pickle.load(f)
 
     if not os.path.exists("stock_dfs"):
         os.makedirs("stock_dfs")
@@ -170,14 +170,20 @@ def data_yahoo(reload_sp500=False):
     start = dt.datetime(2000,1,1)
     end = dt.datetime.now()
 
-    for ticker in tickers_names_sectors:
+    for ticker in tickers:
         if not os.path.exists("stock_dfs/{}.csv".format(ticker)):
-            df = web.DataReader(tickers_names_sectors, "yahoo", start, end)
+            df = web.DataReader(tickers, "yahoo", start, end)
+            df = df/df[0]
             df.to_csv("stock_dfs/{}.csv".format(ticker))
         else:
             print("Already have {}".format(ticker))
 
 data_yahoo()
+
+
+
+
+
 
 
 def compile_data():
@@ -191,7 +197,6 @@ def compile_data():
     for count, ticker in enumerate(tickers):
         df = pd.read_csv("stock_dfs/{}.csv".format(ticker))
         df.set_index("Date", inplace=True)
-        df = df.pct_change()
         df.rename(columns = {"Adj Close": ticker}, inplace=True) #Adj Close takes the categories place in the column - Simple rename
         df.drop(["Open","High","Low","Close","Volume"],1, inplace=True)
     
@@ -207,29 +212,39 @@ def compile_data():
 
 compile_data()
 
-sp_gspc_index = web.DataReader("^GSPC",data_source = "yahoo", start = "1/1/2000")
-sp_gspc_index.to_csv("spIndex.csv")
-df_sp_index = pd.read_csv("spIndex.csv", parse_dates=True, index_col=0)
-df_sp_index.set_index("Date", inplace=True)
 
-print(df_sp_index)
 
-df_new_sp_index = df_sp_index["Adj Close"].pct_change()
+#Get sp500 index data
 
-#Convert to mdates and candlestick
-Stock_ohlc = df_new_sp_index.resample("10D").ohlc() #Ohlc = Open, high, low, close. 10D = 10 days
-Stock_ohlc.reset_index(inplace=True)
+Index_data = web.DataReader("^GSPC", data_source="yahoo", start="1,1,2000")
+Index_data.to_csv("IndexData.csv")
 
-Stock_ohlc["Date"] = Stock_ohlc["Date"].map(mdates.date2num)
+df_index_data = pd.read_csv("IndexData.csv", parse_dates=True)
+df_index_data.set_index("Date", inplace=True)
+df_index_data.rename(columns = {"Adj Close": "S&P500"}, inplace=True)
 
-ax1 = plt.subplot2grid((6,1), (0,0), rowspan= 5, colspan=1)  
-ax1.xaxis_date()
+df_index_data_new = df_index_data["S&P500"]
+print(df_index_data_new)
 
-candlestick_ohlc(ax1,Stock_ohlc.values, width=2, colorup="g")
-plt.show() 
+df_index_data_new = df_index_data_new/df_index_data_new[0]*100
+print(df_index_data_new)
+df_index_data_new.plot()
 
 
 
+
+
+
+
+
+
+index_list = df_index_data_new.values.tolist()
+print(index_list)
+
+index_list_done = lambda v: (v / index_list[0])*100
+[index_list_done(v) for v in index_list]
+
+df_index_data = pd.DataFrame(index_list_done, columns = ["S&P500 return"])
 
 
 
