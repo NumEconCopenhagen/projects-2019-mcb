@@ -168,7 +168,7 @@ def data_yahoo(reload_sp500=False):
     if not os.path.exists('stock_dfs'):
         os.makedirs('stock_dfs')
 
-    start = dt.datetime(2010, 1, 1)
+    start = dt.datetime(2000, 1, 1)
     end = dt.datetime.now()
     for ticker in tickers:
         # just in case your connection breaks, we'd like to save our progress!
@@ -228,6 +228,9 @@ print(df_index_data_new)
 df_index_data_new = df_index_data_new/df_index_data_new[0]*100
 print(df_index_data_new)
 df_index_data_new.plot()
+
+df_final = df_stocks.join(df_index_data_new, how="left")
+print(df_final)
 
 #Widget/plot
 
