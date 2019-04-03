@@ -119,8 +119,7 @@ print(df_stocks)
 Index_data = web.DataReader("^GSPC", data_source="yahoo", start="1,1,2000")
 Index_data.to_csv("IndexData.csv")
 
-df_index_data = pd.read_csv("IndexData.csv", parse_dates=True)
-df_index_data.set_index("Date", inplace=True)
+df_index_data = pd.read_csv("IndexData.csv", index_col = "Date", parse_dates=True)
 df_index_data.rename(columns = {"Adj Close": "S&P500"}, inplace=True)
 
 df_index_data_new = df_index_data["S&P500"]
@@ -135,8 +134,21 @@ print(df_final)
 
 #Widget/plot
 
-with open("sp500tickers.pickle", "rb") as f:
-    tickers = pickle.load(f)
 
-%matplotlib line
-df_final["ATVI"].plot(legend=True)
+ydata = df_final[["ATVI", "S&P500"]].copy()
+
+plt.plot(ydata)
+
+def plot():
+
+    df = df_final
+    
+    plt.plot(df["ATVI"], label = "Activision Blizzard")
+    plt.plot(df["S&P500"], label = "S&P500 Index")
+
+    legend = plt.legend(loc = "upper center", shadow = True, fontsize = "small", facecolor = "black")
+
+    plt.show()
+
+
+plot()\
