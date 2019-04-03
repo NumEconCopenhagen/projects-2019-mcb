@@ -208,6 +208,10 @@ def compile_data():
 
 compile_data()
 
+df_stocks = pd.read_csv("sp500_joined_adj_closes.csv")
+df_stocks.set_index("Date", inplace=True)
+
+print(df_stocks)
 
 #Get sp500 index data
 
@@ -224,6 +228,9 @@ print(df_index_data_new)
 df_index_data_new = df_index_data_new/df_index_data_new[0]*100
 print(df_index_data_new)
 df_index_data_new.plot()
+
+#Widget/plot
+
 
 
 
