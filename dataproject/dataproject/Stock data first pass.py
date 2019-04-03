@@ -234,7 +234,10 @@ print(df_final)
 
 #Widget/plot
 
+with open("sp500tickers.pickle", "rb") as f:
+    tickers = pickle.load(f)
 
+df_final["ATVI"].plot(legend=True)
 
 
 
