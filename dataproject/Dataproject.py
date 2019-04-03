@@ -34,6 +34,10 @@ import numpy as np
 from scipy.stats import norm # normal distribution
 import matplotlib.pyplot as plt
 import ipywidgets as widgets
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
+import matplotlib.cbook as cbook
 style.use("ggplot")
 
 
@@ -132,11 +136,29 @@ df_index_data_new.plot()
 df_final = df_stocks.join(df_index_data_new, how="left")
 print(df_final)
 
-#Widget/plot
 
-with open("sp500tickers.pickle", "rb") as f:
-    tickers = pickle.load(f)
+#Widget/plot
+fig, ax= plt.subplots()
+
+# add the x-axis and the y-axis to the plot
+ax.plot(df_final.index.values, 
+        df_final['ATVI'], 
+        color = 'red')
+
+# rotate tick labels
+plt.setp(ax.get_xticklabels(), rotation=45)
+
+# set title and labels for axes
+ax.set(xlabel="Date",
+       ylabel="Returns",
+       title="Fuck det her")
+
+plt.show()
 
 
 %matplotlib inline
-df_final["ATVI"].plot(legend=True)
+
+
+
+
+
