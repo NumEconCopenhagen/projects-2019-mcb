@@ -146,9 +146,9 @@ def plot():
     plt.plot(df["ATVI"], label = "Activision Blizzard")
     plt.plot(df["S&P500"], label = "S&P500 Index")
 
-    legend = plt.legend(loc = "upper center", shadow = True, fontsize = "small", facecolor = "black")
+    plt.legend(loc = "upper center", shadow = True, fontsize = "small", facecolor = "black")
 
     plt.show()
 
 
-plot()\
+plot()
