@@ -197,7 +197,7 @@ def compile_data():
         df.rename(columns = {"Adj Close": ticker}, inplace=True) #Adj Close takes the categories place in the column - Simple rename
         df.drop(["Open","High","Low","Close","Volume"],1, inplace=True)
         df = df.divide(df.iloc[0])*100
-    
+
         if main_df.empty:
             main_df = df
         else:
@@ -209,7 +209,6 @@ def compile_data():
     main_df.to_csv("sp500_joined_adj_closes.csv")
 
 compile_data()
-
 
 
 #Get sp500 index data
