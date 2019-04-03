@@ -29,6 +29,11 @@ import bs4 as bs
 import pickle
 import requests
 import os
+import pickle
+import numpy as np
+from scipy.stats import norm # normal distribution
+import matplotlib.pyplot as plt
+import ipywidgets as widgets
 style.use("ggplot")
 
 
@@ -242,23 +247,24 @@ df_final["ATVI"].plot(legend=True)
 
 
 
-Ticker = widgets.textbox(
-    description = "Ticker:", 
-    value = "Firms", 
-    options=tickers.unique().tolist()
-)
+# Ticker = widgets.textbox(
+#     description = "Ticker:", 
+#     value = "Firms", 
+#     options=tickers.unique().tolist()
+# )
 
-def validate():
-    if Ticker.value in df_final.unique():
-        return True
-    else:
-        return False
+# def validate():
+#     if Ticker.value in df_final.unique():
+#         return True
+#     else:
+#         return False
 
-trace1 = go.plot(x=df_final(tickers), opacity = 1, name = tickers)
+# trace1 = go.plot(x=df_final(tickers), opacity = 1, name = tickers)
 
-def response(change):
+# def response(change):
 
 
+widgets
 
 
 
