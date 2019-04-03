@@ -29,8 +29,6 @@ import bs4 as bs
 import pickle
 import requests
 import os
-import csv
-from six.moves import cPickle as pickle
 style.use("ggplot")
 
 
@@ -178,6 +176,7 @@ def data_yahoo(reload_sp500=False):
             df = web.DataReader(tickers, "yahoo", start, end)
             df_helper = df["Adj Close"]
             df_index = df_helper/df_helper[0]*100
+            print(df_index)
             df_index.to_csv("stock_dfs/{}.csv".format(ticker))
         else:
             print("Already have {}".format(ticker))
