@@ -237,7 +237,27 @@ print(df_final)
 with open("sp500tickers.pickle", "rb") as f:
     tickers = pickle.load(f)
 
+
 df_final["ATVI"].plot(legend=True)
+
+
+
+Ticker = widgets.textbox(
+    description = "Ticker:", 
+    value = "Firms", 
+    options=tickers.unique().tolist()
+)
+
+def validate():
+    if Ticker.value in df_final.unique():
+        return True
+    else:
+        return False
+
+trace1 = go.plot(x=df_final(tickers), opacity = 1, name = tickers)
+
+def response(change):
+
 
 
 
