@@ -1,4 +1,18 @@
+"""
+write this in the Terminal:
+conda install -c anaconda pandas-datareader
 
+When asked:
+The following packages will be SUPERSEDED by a higher-priority channel:
+
+  ca-certificates                                 pkgs/main --> anaconda
+  certifi                                         pkgs/main --> anaconda
+  openssl                                         pkgs/main --> anaconda
+  qt                                              pkgs/main --> anaconda
+Proceed ([y]/n)?
+
+Press y
+"""
 import datetime as dt
 import matplotlib.pyplot as plt
 from matplotlib import style
