@@ -1,7 +1,7 @@
 Course: Introduction to Programming and Numerical Analysis
 Date: 4/4/2019
 Assignment 1
-Group: Mads Frederiksen, Christian Fogtdal og Bjørn Cilleborg
+Group: Mads Frederiksen, Christian Fogtdal and Bjørn Cilleborg
 
 The purpose of this project is to gather stock data from the S&P500 using Yahoo's native API,
 and consolidate it into a single CSV-file. From there we create a chart comparing one of the companies from S&P500
