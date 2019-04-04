@@ -34,11 +34,8 @@ import numpy as np
 from scipy.stats import norm # normal distribution
 import matplotlib.pyplot as plt
 import ipywidgets as widgets
-import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib.dates as mdates
-import matplotlib.cbook as cbook
 style.use("ggplot")
+
 
 
 #Automating S&P500 - From Yahoo Finance - Close price adjusted for splits, and Adj. Close price is adjusted for both dividends and splits.
@@ -122,8 +119,7 @@ print(df_stocks)
 Index_data = web.DataReader("^GSPC", data_source="yahoo", start="1,1,2000")
 Index_data.to_csv("IndexData.csv")
 
-df_index_data = pd.read_csv("IndexData.csv", parse_dates=True)
-df_index_data.set_index("Date", inplace=True)
+df_index_data = pd.read_csv("IndexData.csv", index_col = "Date", parse_dates=True)
 df_index_data.rename(columns = {"Adj Close": "S&P500"}, inplace=True)
 
 df_index_data_new = df_index_data["S&P500"]
@@ -136,27 +132,29 @@ df_index_data_new.plot()
 df_final = df_stocks.join(df_index_data_new, how="left")
 print(df_final)
 
-
 #Widget/plot
-fig, ax= plt.subplots()
-
-# add the x-axis and the y-axis to the plot
-ax.plot(df_final.index.values, 
-        df_final['ATVI'], 
-        color = 'red')
-
-# rotate tick labels
-plt.setp(ax.get_xticklabels(), rotation=45)
-
-# set title and labels for axes
-ax.set(xlabel="Date",
-       ylabel="Returns",
-       title="Fuck det her")
-
-plt.show()
 
 
-%matplotlib inline
+ydata = df_final[["ATVI", "S&P500"]].copy()
+
+plt.plot(ydata)
+
+def plot():
+
+    df = df_final
+    
+    plt.plot(df["ATVI"], label = "Activision Blizzard")
+    plt.plot(df["S&P500"], label = "S&P500 Index")
+
+    plt.legend(loc = "upper center", shadow = True, fontsize = "small", facecolor = "black")
+
+    plt.show()
+
+
+plot()
+
+
+
 
 
 
