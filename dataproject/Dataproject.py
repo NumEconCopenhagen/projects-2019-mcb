@@ -32,6 +32,12 @@ import matplotlib.pyplot as plt
 import ipywidgets as widgets
 style.use("ggplot")
 
+"""The purpose of the code below is to first get the tickers for each of the companites on the S&P500 index list, which we later on will
+use to append all the historic data to the appropriate ticker. We use *requests.get* to access the data from Wikipedia, which is the list of tickers, after which we use *BeautifulSoup* to then read the HTML format of the website, and make a table. The *soup.find* command is used to specify where exactly in the HTML the table we want is located. 
+
+We make an empty list, and use a for loop to read all entries in the column of the tickers and append each of these to the list we made (called tickers). 
+
+We save it as a pickle as we want to access this data later on, and fast. We called this *"sp500tickers.pickle"*. """
 
 
 #Automating S&P500 - From Yahoo Finance - Close price adjusted for splits, and Adj. Close price is adjusted for both dividends and splits.
@@ -53,6 +59,12 @@ def save_sp500_tickers():
     
 
 save_sp500_tickers()
+
+"""Next, we need data for each ticker we have in the list. We get this from yahoo, and using the *DataReader* from pandas. 
+
+Remember we saved the tickers as a pickle file, which we will now open and use to append the data to. Also, we make a separate folder for all of the CSV files we will get (505!). We define appropriate start and end dates for the data we want. 
+
+We then create a for loop, and save each CSV file with price data in the stock_dfs folder. """
 
 
 #Getting data from Yahoo
@@ -76,6 +88,18 @@ def data_yahoo(reload_sp500=False):
             print('Already have {}'.format(ticker))
 
 data_yahoo()
+
+"""Furthermore, the data from yahoo and the tickers are not very useful by themselves, so obvisouly we want to compile the data in order to get a dataframe with all tickers and their data. We open the pickle file again, and make an empty dataframe.
+
+We can then compile each ticker with their data. We drop all columns that are not *Adj Close*, and rename *Adj Close* to the ticker name since we do not have any other data than for Adjusted Close price. We choose to only include this, since the Adjusted Close price takes into account payment of dividends of companies, eventual stock splits, and Rights offerings.
+
+For easier comparison, we also index the data by dividing the first observation in each column by the rest of the column. 
+
+We then use the empty data frame made before, and join all the data together into a single data frame. 
+
+We also convert the data frame to a csv file for easy access to it. 
+
+finally, we create a data frame from the CSV file just saved, and index the date. We call this new data frame *df_stocks*."""
 
 
 def compile_data():
