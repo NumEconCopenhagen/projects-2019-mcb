@@ -30,28 +30,28 @@ u(np.exp(1),0) #Checking if the function is working properly. If result is 1, it
 #We will now plot the utility function we just found defined, in a 3-dimensional plot:
 
 #create the plot
-fig = plt.figure(figsize=(10,10))
+fig = plt.figure(figsize=(8,6))
 
-#create the axis
-ax = fig.gca(projection="3d", elev=30, azim=310)
+# create a 3D Axes object
+ax = fig.gca(projection='3d', elev=30, azim=310)
 
-#Create grid of values for consumption and leisure:
-Consumption = np.linspace(0,20,200)
-Leisure = np.linspace(0,2,20)
-L, C = np.meshgrid(Leisure, Consumption) #Make N-D coordinate arrays for vectorized evaluations of N-D scalar/vector fields over N-D grids, given one-dimensional coordinate arrays.
+# create a grid of (x,y) values which we will pass to function
+consumption = np.linspace(0, 10, 200)
+labor = np.linspace(0, 1, 20)
+L, C = np.meshgrid(labor, consumption)
 
-#We choose arbitrary parameter values:
-b, omega, theta = 5.0, 1.0, 1.0 
+# Choose parameter values
+b, theta, omega = 5.0, 1.0, 1.0
 
-#We define the utility function: 
-utility = u(C,L)
+# we will actually plot output
+utility = u(C, L)
 
-#We define the surface:
-utility_surface = ax.plot_surface(L, C, utility, rstride = 1, cstride = 1, 
-                                  cmap = mpl.cm.terrain, linewidth = 0, vmin=-10, 
-                                  vmax = np.max(utility), antialiased=False)
+# note the use of the new plot command!
+utility_surface = ax.plot_surface(L, C, utility, rstride=1, cstride=1, cmap="YlGnBu", 
+                                  linewidth=0, vmin=-10, vmax=np.max(utility), 
+                                  antialiased=False)
 
-#We will now fix axis, labels, colors, legedens, etc:
+# axes, labels, title, colorbar etc.
 ax.set_xlim(0, 1)
 ax.set_ylim(0, 10)
 ax.set_xlabel(r'Labor, $L_{t}$', fontsize=15, family='serif')
@@ -60,5 +60,5 @@ ax.set_title(r'$u(C,\ L)$ for $b=%.2f, \theta=%.2f, \omega=%.2f$' %(b, theta, om
              fontsize=20, family='serif')
 fig.colorbar(utility_surface, shrink=0.75, aspect=10)
 
-#Display
+# display the plot!
 plt.show()
