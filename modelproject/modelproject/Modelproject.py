@@ -62,3 +62,32 @@ fig.colorbar(utility_surface, shrink=0.75, aspect=10)
 
 # display the plot!
 plt.show()
+
+#We will now look at the effects of the parameters, by locking consumption and leisure
+L_lock, C_lock = 0.5, 1.0
+
+fig, axes = plt.subplots(1, 2, sharey=True, figsize=(15,10))
+ax1, ax2 = axes
+
+for b in [0.5, 1.0, 1.5, 2.0, 2.5, 3.0]:
+    #Here we lock leisure, and plot consumption and a set leisure level while varying b
+    ax1.plot(consumption, u(consumption, L_lock), label = "b=%g" %b)
+
+    #Axes, labels, etc
+    ax1.set_xlabel("Consumption, $C_t$", family="serif")
+    ax1.set_ylabel(r"u$(C_t, \bar{L})$", rotation = "vertical")
+    ax1.set_title("Slicing through $u(C_{t}, L_{t})$ at $L_{t}=%.2f$" %L_lock, family="serif")
+
+    #Next we do the same, but hold consumption locked. 
+    ax2.plot(labor, u(C_lock, labor), label = "b=%g" %b)
+
+    #Axes, labels, etc
+    ax2.set_xlabel("Labor, $L_t$", family="serif")
+    ax2.set_title("Slicing through $u(C_{t}, L_{t})$ at $L_{t}=%.2f$" %L_lock, family = "serif")
+
+ax2.legend(loc=0, frameon=False, prop={'family':'serif'})
+
+plt.tight_layout()
+plt.suptitle('Utility slices for various $b$', y=1.05, fontsize=20, family='serif')
+
+plt.show()
