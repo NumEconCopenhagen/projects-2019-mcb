@@ -5,7 +5,7 @@ from mpl_toolkits.mplot3d import Axes3D
 from scipy import linalg, interpolate, io
 
 #Write explaination and equations for the utility function defined
-#by consumption and lesisure in Romer. 
+#by consumption and lesisure by Romer. 
 
 #Theta is the coefficient describing an individuals relative risk aversion. This is greater than 1.
 #Delta is the inverse intertemporal elasticity of substitution between current and future leisure.
@@ -13,12 +13,12 @@ from scipy import linalg, interpolate, io
 
 def u(C, L): #Defining the utility function
     if theta == 1.0:
-        consumption = np.log(C)
+        consumption = np.log(C) #This is a condition of the simple utility flow model. 
     else:
         consumption = (C**(1-theta)-1/(1-theta))
 
     if omega == 1.0:
-        leisure = np.log(1-L)
+        leisure = np.log(1-L)  #This is a condition of the simple utility flow model. 
     else:
         leisure = ((1-L)**(1-omega)-1/(1-omega))
 
@@ -39,18 +39,18 @@ fig = plt.figure(figsize=(8,6))
 # create a 3D Axes object
 ax = fig.gca(projection='3d', elev=30, azim=310)
 
-# create a grid of (x,y) values which we will pass to function
+#Grid of (x,y) values which we will pass to function
 consumption = np.linspace(0, 10, 200)
 labor = np.linspace(0, 1, 20)
 L, C = np.meshgrid(labor, consumption)
 
-# Choose parameter values
+#Parameter values
 b, theta, omega = 5.0, 1.0, 1.0
 
-# we will actually plot output
+#We define utility as the function we made earlier. 
 utility = u(C, L)
 
-# note the use of the new plot command!
+#Plot surface
 utility_surface = ax.plot_surface(L, C, utility, rstride=1, cstride=1, cmap="YlGnBu", 
                                   linewidth=0, vmin=-10, vmax=np.max(utility), 
                                   antialiased=False)
@@ -64,7 +64,7 @@ ax.set_title(r'$u(C,\ L)$ for $b=%.2f, \theta=%.2f, \omega=%.2f$' %(b, theta, om
              fontsize=20, family='serif')
 fig.colorbar(utility_surface, shrink=0.75, aspect=10)
 
-# display the plot!
+# display plot
 plt.show()
 
 #We will now look at the effects of the parameters, by locking consumption and leisure
@@ -236,11 +236,11 @@ L_1 = linalg.solve(A, d)[3,0]
 u_0 = u(C_0, L_0)
 u_1 = u(C_1, L_1)
 
-print("Optimal C in period 0,1:", (C_0, C_1)) 
-print("Optimal l in period 0,1:", (L_0, L_1)) 
-print("Flow in period 0,1:   ", (u_0, u_1))
+print("Optimal C in period 0,1:", (C_0, C_1)) #Shows the optimal amount of consumption in each of the two periods
+print("Optimal l in period 0,1:", (L_0, L_1)) #Shows the optimal amount of labor in each of the two periods
+print("Flow in period 0,1:   ", (u_0, u_1)) #Shows utility 
 
-print("Optimal C, t=0:", (1 / ((1 + b) * (1 + beta))) * (W0 + (1 / (1 + r1)) * W1))
-print("Optimal C, t=1:", ((1 + r1) / (1 + b)) * (beta / (1 + beta)) * (W0 + (1 / (1 + r1)) * W1))
-print("Optimal L, t=0:", 1 - (b / W0) * (1 /((1 + b) * (1 + beta))) * (W0 + (1 / (1 + r1)) * W1))
-print("Optimal L, t=1:", 1 - ((b * beta * (1 + r1)) / W1) * (1 /((1 + b) * (1 + beta))) * (W0 + (1 / (1 + r1)) * W1))
+print("Optimal C, t=0:", (1 / ((1 + b) * (1 + beta))) * (W0 + (1 / (1 + r1)) * W1)) #From model, will be explained in notebook
+print("Optimal C, t=1:", ((1 + r1) / (1 + b)) * (beta / (1 + beta)) * (W0 + (1 / (1 + r1)) * W1)) #From model, will be explained in notebook
+print("Optimal L, t=0:", 1 - (b / W0) * (1 /((1 + b) * (1 + beta))) * (W0 + (1 / (1 + r1)) * W1)) #From model, will be explained in notebook
+print("Optimal L, t=1:", 1 - ((b * beta * (1 + r1)) / W1) * (1 /((1 + b) * (1 + beta))) * (W0 + (1 / (1 + r1)) * W1)) #From model, will be explained in notebook
