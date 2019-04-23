@@ -233,8 +233,8 @@ C_0 = linalg.solve(A, d)[0,0]
 C_1 = linalg.solve(A, d)[1,0] 
 L_0 = linalg.solve(A, d)[2,0]
 L_1 = linalg.solve(A, d)[3,0]
-u_0 = u(C_star0, L_star0)
-u_1 = u(C_star1, L_star1)
+u_0 = u(C_0, L_0)
+u_1 = u(C_1, L_1)
 
 print("Optimal C in period 0,1:", (C_0, C_1)) 
 print("Optimal l in period 0,1:", (L_0, L_1)) 
