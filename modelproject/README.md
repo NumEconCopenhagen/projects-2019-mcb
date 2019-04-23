@@ -7,3 +7,4 @@ Specifically, we model the trade-off between leisure and consumption and derive 
 
 
 Delta = omega. :)
+Potential widget: Slider for different values of delta, omega, and b. 
