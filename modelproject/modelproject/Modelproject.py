@@ -107,7 +107,7 @@ L_lock, C_lock = 0.5, 1
 fig, axes = plt.subplots(1, 2, sharey=True, figsize=(12,6))
 ax1, ax2 = axes
 
-for theta in [0.5, 1.0, 1.5, 2.0, 2.5, 3.0]:
+for theta in [0.5, 1.0, 1.5, 2.0]:
     
     # first subplot will fix l at some constant l_bar and plot u(C, l_bar)
     ax1.plot(consumption, u(consumption, L_lock), label=r'$\theta=%g$' %theta)
@@ -134,6 +134,7 @@ plt.suptitle(r'Utility slices for various $\theta$', y=1.05, fontsize=20, family
 
 plt.show()
 
+#For theta we have chosen to only include 0-2 because exceeding 2.0 messes with the y-axis
 
 #And for omega
 
@@ -144,7 +145,7 @@ L_lock, C_lock = 0.5, 1
 fig, axes = plt.subplots(1, 2, sharey=True, figsize=(12,6))
 ax1, ax2 = axes
 
-for omega in [0.5, 1.0, 1.5, 2.0, 2.5, 3.0]:
+for omega in [0.5, 1.0, 1.5, 2.0]:
     
     # first subplot will fix l at some constant l_bar and plot u(C, l_bar)
     ax1.plot(consumption, u(consumption, L_lock), label=r'$\omega=%g$' %omega)
@@ -170,7 +171,76 @@ plt.suptitle(r'Utility slices for various $\omega$', y=1.05, fontsize=20, family
 
 plt.show()
 
+#Looking at the trade-off between leisure and consumption. 
 
-#NOTE: SLICE FOR THETA AND OMEGA IS NOT WORKING PROPERLY
+fig = plt.figure(figsize=(12,6))
+ax = fig.add_subplot(111)
 
+# Force logarithmic preferences!
+b, theta, omega = 2.0, 0.5, 0.5 #arbitrarily chosen. 
 
+# we will actually plot output
+utility = u(C, L) #we plot the function from earlier 
+
+# create the contour plot
+im = ax.imshow(utility, interpolation='gaussian', origin='lower', cmap=mpl.cm.terrain, 
+               vmin=-10, vmax=np.max(utility), extent=(0, 1, 0, 10), aspect=0.10)
+
+# demarcate the contours...
+CS = ax.contour(L, C, utility, np.linspace(-8, np.max(utility), 10), colors=np.repeat('k', 10), 
+                linewidths=1, linestyles='solid')
+ax.clabel(CS, inline=1, fmt='%1.2f')
+
+# axes, labels, title, colorbar etc.
+ax.set_xlim(0, 1)
+ax.set_ylim(0, 10)
+ax.set_xlabel(r'Labor, $L_{t}$', fontsize=15, family='serif')
+ax.set_ylabel(r'Consumption, $C_{t}$', fontsize=15, family='serif')
+ax.set_title(r'$u(C,\ L)$ for $b=%.2f, \theta=%.2f, \omega=%.2f$' %(b, theta, omega), 
+             fontsize=20, family='serif')
+fig.colorbar(utility_surface, shrink=0.75, aspect=10)
+
+plt.show()
+
+#2. PERIOD MODEL - Explain the model in the notebook.
+# We choose arbitrary parameter values. 
+b, beta, theta, omega = 2.0, 0.50, 1.0, 1.0
+ 
+# Specify some arbitrary prices which the household will take as given. 
+W0, W1, r1 = 5, 5, 0.025
+
+# Calculate endowment given prices.
+endowment = W0 + (1 / (1 + r1)) * W1
+
+print("Labor endowment is:", endowment)
+
+# is the non-negativity constraint on l0 satisfied by your chosen prices?
+(1 / (1 + r1)) * (W1 / W0) < ((((1 + b) * (1 + beta)) / b) - 1) #result is true - Constraint is satisfied. 
+
+#Define the two matrixes derived from the model
+A = np.array([[b, 0, W0, 0], 
+              [beta * (1 + r1), -1, 0, 0], 
+              [0, b, 0, W1], 
+              [1, 1 / (1 + r1), -W0, -(1 / (1 + r1)) * W1]])
+
+d = np.array([[W0], 
+              [0], 
+              [W1], 
+              [0]])
+
+# Solve the system of equations and assign the optimal choices for consumption and labor
+C_0 = linalg.solve(A, d)[0,0]
+C_1 = linalg.solve(A, d)[1,0] 
+L_0 = linalg.solve(A, d)[2,0]
+L_1 = linalg.solve(A, d)[3,0]
+u_0 = u(C_star0, L_star0)
+u_1 = u(C_star1, L_star1)
+
+print("Optimal C in period 0,1:", (C_0, C_1)) 
+print("Optimal l in period 0,1:", (L_0, L_1)) 
+print("Flow in period 0,1:   ", (u_0, u_1))
+
+print("Optimal C, t=0:", (1 / ((1 + b) * (1 + beta))) * (W0 + (1 / (1 + r1)) * W1))
+print("Optimal C, t=1:", ((1 + r1) / (1 + b)) * (beta / (1 + beta)) * (W0 + (1 / (1 + r1)) * W1))
+print("Optimal L, t=0:", 1 - (b / W0) * (1 /((1 + b) * (1 + beta))) * (W0 + (1 / (1 + r1)) * W1))
+print("Optimal L, t=1:", 1 - ((b * beta * (1 + r1)) / W1) * (1 /((1 + b) * (1 + beta))) * (W0 + (1 / (1 + r1)) * W1))
