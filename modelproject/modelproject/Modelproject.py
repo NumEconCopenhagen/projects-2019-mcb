@@ -244,3 +244,40 @@ print("Optimal C, t=0:", (1 / ((1 + b) * (1 + beta))) * (W0 + (1 / (1 + r1)) * W
 print("Optimal C, t=1:", ((1 + r1) / (1 + b)) * (beta / (1 + beta)) * (W0 + (1 / (1 + r1)) * W1)) #From model, will be explained in notebook
 print("Optimal L, t=0:", 1 - (b / W0) * (1 /((1 + b) * (1 + beta))) * (W0 + (1 / (1 + r1)) * W1)) #From model, will be explained in notebook
 print("Optimal L, t=1:", 1 - ((b * beta * (1 + r1)) / W1) * (1 /((1 + b) * (1 + beta))) * (W0 + (1 / (1 + r1)) * W1)) #From model, will be explained in notebook
+
+#We will now plot the budget constraint for t=0 and the indifference curve from earlier. 
+fig = plt.figure(figsize=(12,6))
+ax = fig.add_subplot(111)
+
+#We define utility as the function as we did before
+utility = u(C, L)
+
+# re-create the contour plot
+im = ax.imshow(utility, interpolation='gaussian', origin='lower', cmap=mpl.cm.terrain, 
+                vmin=-10, vmax=np.max(utility), extent=(0, 1, 0, 10), aspect=0.10)
+
+#We plot the budget constraint. (See equation in notebook - Will be added.)
+labor_supply = np.linspace(0, 1, 100)
+ax.plot(labor_supply, W0 * labor_supply + (1 / (1 + r1)) * (W1 * L_1 - C_1), 
+        color='r')
+
+#We plot the indifference curve
+CS = ax.contour(L, C, utility, np.array([u_0]), colors='k', linewidths=1, linestyles='solid')
+ax.clabel(CS, inline=1, fmt='%1.4f')
+
+# mark the optimal consumption and labor. 
+ax.hlines(C_0, 0, L_0, linestyle='dashed')
+ax.vlines(L_0, 0, C_0, linestyle='dashed')
+
+# axes, labels, title, colorbar etc.
+ax.set_xlim(0, 1)
+ax.set_ylim(0, 10)
+ax.set_ylabel(r'Consumption, $C_{t}$', family='serif', fontsize=15)
+ax.set_xlabel(r'Labor, $L_{t}$', family='serif', fontsize=15)
+ax.set_title(r'Optimal bundle in period t=0 for $b=%.2f, \beta=%.2f$' %(b, beta), 
+             fontsize=15, family='serif')
+ax.legend(loc=4, frameon=False)
+fig.colorbar(utility_surface, shrink=0.75, aspect=10)
+
+plt.show()
+
