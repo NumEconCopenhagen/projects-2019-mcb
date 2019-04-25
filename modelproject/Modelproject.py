@@ -283,6 +283,3 @@ ax.legend(loc=4, frameon=False)
 fig.colorbar(utility_surface, shrink=0.75, aspect=10)
 
 plt.show()
-
-
-
