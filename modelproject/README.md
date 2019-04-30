@@ -4,7 +4,5 @@ In this project we model an **intertemporal household optimization problem**, wh
 
 
 Specifically, we model the trade-off between leisure and consumption and derive the optimal consumption smoothing path based on given parameter values of risk aversion, preference for leisure and the intertemporal elasticity of substitution. 
-
-
-Delta = omega. :)
-Potential widget: Slider for different values of delta, omega, and b. 
+In our project we also consider the effects of changes in the parameters and present figures for each parameter. 
+We consider examples of a single- and two-period model and derive the optimal bundle of consumption and leisure.
