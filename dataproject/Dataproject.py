@@ -56,7 +56,6 @@ def save_sp500_tickers():
         print(tickers)
 
         return(tickers)
-    
 
 save_sp500_tickers()
 
@@ -174,7 +173,9 @@ def plot():
 plot()
 
 
-
-
+#For the exam: Compare sectors as a whole by indexing data for each of the sectors (Index the GIGS) - Make widget where you can pick and choose what to compare.
+#Correlation table the stocks (Sectors) 
+#Find or make benchmark - beta values and error tracking. 
+#
 
 
