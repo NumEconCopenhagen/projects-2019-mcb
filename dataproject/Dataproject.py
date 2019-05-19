@@ -142,7 +142,7 @@ def get_data_from_yahoo(reload_sp500=False):
         else:
             print('Already have {}'.format(ticker))
 
-data_yahoo()
+get_data_from_yahoo()
 
 """Furthermore, the data from yahoo and the tickers are not very useful by themselves, so obvisouly we want to compile the data in order to get a dataframe with all tickers and their data. We open the pickle file again, and make an empty dataframe.
 
