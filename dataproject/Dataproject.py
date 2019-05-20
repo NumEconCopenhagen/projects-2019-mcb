@@ -186,13 +186,14 @@ compile_data()
 data_df = pd.read_csv("sp500_joined_adj_closes.csv")
 data_df.set_index("Date", inplace=True)
 
- data_df_new= data_df.copy()
-    for col in df.columns:
-        for i, value in enumerate(data_df_new[col].values):
-            if np.isnan(value):
-                df[col][i] = fillvalue
-    else: 
-        data_df_indexed = data_df/data_df[0]*100
+data_df_new= data_df.copy()
+
+for col in data_df_new.columns:
+    for i, value in enumerate(data_df_new[col].values):
+        if np.isnan(value):
+            data_df_new[col][i] = np.value(0)
+else: 
+    data_df_indexed = data_df/data_df[0]*100
 
 print(data_df_new)
 
