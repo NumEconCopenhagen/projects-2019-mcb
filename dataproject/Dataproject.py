@@ -12,6 +12,9 @@ The following packages will be SUPERSEDED by a higher-priority channel:
 Proceed ([y]/n)?
 
 Press y
+
+Install dash
+
 """
 import datetime as dt
 import matplotlib.pyplot as plt
@@ -27,6 +30,9 @@ import requests
 import os
 import pickle
 import numpy as np
+import dash
+import dash_core_components as dcc
+import dash_html_components as html
 from scipy.stats import norm # normal distribution
 import matplotlib.pyplot as plt
 import ipywidgets as widgets
@@ -184,14 +190,22 @@ def compile_data():
 compile_data()
 
 data_df = pd.read_csv("sp500_joined_adj_closes.csv")
+data_df = data_df.drop(["BHGE", "DWDP", "TPR", "ARNC", "ZBH", "OKE", "EVRG", "COST", "EW", "BBT", "JNJ", "VMC", "LIN", "COTY", "DGX", "ZBH", "FTV", "LW"], axis=1)
 data_df.set_index("Date", inplace=True)
+print(data_df.head())
 
+data_df_indexed = data_df/data_df.iloc[0]*100
+print(data_df_indexed)
 
+#First difference of the data
+first_difference = data_df_indexed.apply(lambda x: x - x.shift(1))
+first_difference = first_difference.fillna(value=0)
+first_difference.head() 
 
-
-
-data_df_indexed = data_df/data_df[0]*100
-
+#pct. change on the closing prices. 
+pct_change = data_df.apply(lambda x: (x - x.shift(1))/x.shift(1)*100)
+pct_change = pct_change.fillna(value=0)
+pct_change.head() 
 
 
 

@@ -1,0 +1,507 @@
+,0
+0,Industrials
+1,Health Care
+2,Health Care
+3,Health Care
+4,Information Technology
+5,Communication Services
+6,Information Technology
+7,Information Technology
+8,Consumer Discretionary
+9,Utilities
+10,Financials
+11,Financials
+12,Health Care
+13,Materials
+14,Information Technology
+15,Industrials
+16,Materials
+17,Real Estate
+18,Health Care
+19,Health Care
+20,Industrials
+21,Health Care
+22,Information Technology
+23,Utilities
+24,Financials
+25,Communication Services
+26,Communication Services
+27,Consumer Staples
+28,Consumer Discretionary
+29,Utilities
+30,Industrials
+31,Utilities
+32,Financials
+33,Financials
+34,Real Estate
+35,Utilities
+36,Financials
+37,Health Care
+38,Industrials
+39,Health Care
+40,Information Technology
+41,Energy
+42,Information Technology
+43,Information Technology
+44,Health Care
+45,Financials
+46,Industrials
+47,Energy
+48,Real Estate
+49,Information Technology
+50,Information Technology
+51,Consumer Discretionary
+52,Consumer Staples
+53,Industrials
+54,Information Technology
+55,Financials
+56,Financials
+57,Utilities
+58,Communication Services
+59,Information Technology
+60,Information Technology
+61,Consumer Discretionary
+62,Real Estate
+63,Materials
+64,Energy
+65,Materials
+66,Financials
+67,Financials
+68,Health Care
+69,Financials
+70,Health Care
+71,Financials
+72,Consumer Discretionary
+73,Health Care
+74,Financials
+75,Consumer Discretionary
+76,Industrials
+77,Consumer Discretionary
+78,Consumer Discretionary
+79,Real Estate
+80,Health Care
+81,Health Care
+82,Information Technology
+83,Information Technology
+84,Consumer Staples
+85,Industrials
+86,Energy
+87,Information Technology
+88,Consumer Staples
+89,Financials
+90,Consumer Discretionary
+91,Health Care
+92,Consumer Discretionary
+93,Consumer Discretionary
+94,Industrials
+95,Financials
+96,Real Estate
+97,Communication Services
+98,Materials
+99,Health Care
+100,Health Care
+101,Utilities
+102,Communication Services
+103,Health Care
+104,Materials
+105,Financials
+106,Communication Services
+107,Energy
+108,Consumer Discretionary
+109,Financials
+110,Consumer Staples
+111,Health Care
+112,Energy
+113,Financials
+114,Industrials
+115,Information Technology
+116,Financials
+117,Financials
+118,Information Technology
+119,Consumer Staples
+120,Financials
+121,Utilities
+122,Consumer Staples
+123,Information Technology
+124,Consumer Staples
+125,Communication Services
+126,Financials
+127,Consumer Staples
+128,Energy
+129,Energy
+130,Utilities
+131,Consumer Staples
+132,Health Care
+133,Industrials
+134,Information Technology
+135,Consumer Staples
+136,Consumer Staples
+137,Real Estate
+138,Industrials
+139,Industrials
+140,Health Care
+141,Consumer Discretionary
+142,Health Care
+143,Consumer Discretionary
+144,Health Care
+145,Industrials
+146,Industrials
+147,Health Care
+148,Energy
+149,Energy
+150,Real Estate
+151,Financials
+152,Communication Services
+153,Communication Services
+154,Communication Services
+155,Consumer Discretionary
+156,Consumer Discretionary
+157,Utilities
+158,Industrials
+159,Materials
+160,Materials
+161,Utilities
+162,Real Estate
+163,Utilities
+164,Information Technology
+165,Financials
+166,Materials
+167,Industrials
+168,Consumer Discretionary
+169,Materials
+170,Utilities
+171,Health Care
+172,Communication Services
+173,Industrials
+174,Utilities
+175,Energy
+176,Industrials
+177,Real Estate
+178,Real Estate
+179,Real Estate
+180,Consumer Staples
+181,Utilities
+182,Utilities
+183,Financials
+184,Utilities
+185,Consumer Discretionary
+186,Industrials
+187,Real Estate
+188,Energy
+189,Information Technology
+190,Communication Services
+191,Industrials
+192,Real Estate
+193,Industrials
+194,Information Technology
+195,Financials
+196,Utilities
+197,Financials
+198,Information Technology
+199,Information Technology
+200,Information Technology
+201,Industrials
+202,Industrials
+203,Materials
+204,Consumer Discretionary
+205,Consumer Discretionary
+206,Information Technology
+207,Industrials
+208,Industrials
+209,Communication Services
+210,Communication Services
+211,Financials
+212,Materials
+213,Consumer Discretionary
+214,Consumer Discretionary
+215,Information Technology
+216,Industrials
+217,Industrials
+218,Consumer Staples
+219,Consumer Discretionary
+220,Consumer Discretionary
+221,Health Care
+222,Information Technology
+223,Financials
+224,Industrials
+225,Energy
+226,Consumer Discretionary
+227,Consumer Discretionary
+228,Industrials
+229,Financials
+230,Consumer Discretionary
+231,Health Care
+232,Real Estate
+233,Energy
+234,Health Care
+235,Consumer Staples
+236,Energy
+237,Information Technology
+238,Consumer Discretionary
+239,Energy
+240,Health Care
+241,Consumer Discretionary
+242,Industrials
+243,Consumer Staples
+244,Real Estate
+245,Information Technology
+246,Health Care
+247,Financials
+248,Industrials
+249,Health Care
+250,Industrials
+251,Industrials
+252,Health Care
+253,Industrials
+254,Information Technology
+255,Financials
+256,Information Technology
+257,Health Care
+258,Materials
+259,Communication Services
+260,Materials
+261,Information Technology
+262,Health Care
+263,Financials
+264,Information Technology
+265,Health Care
+266,Real Estate
+267,Information Technology
+268,Industrials
+269,Industrials
+270,Financials
+271,Consumer Staples
+272,Health Care
+273,Industrials
+274,Financials
+275,Information Technology
+276,Industrials
+277,Consumer Staples
+278,Financials
+279,Information Technology
+280,Consumer Staples
+281,Real Estate
+282,Energy
+283,Information Technology
+284,Consumer Discretionary
+285,Consumer Staples
+286,Consumer Staples
+287,Consumer Discretionary
+288,Industrials
+289,Health Care
+290,Information Technology
+291,Consumer Staples
+292,Consumer Discretionary
+293,Consumer Discretionary
+294,Health Care
+295,Financials
+296,Materials
+297,Consumer Discretionary
+298,Industrials
+299,Financials
+300,Consumer Discretionary
+301,Materials
+302,Financials
+303,Real Estate
+304,Consumer Discretionary
+305,Energy
+306,Energy
+307,Consumer Discretionary
+308,Financials
+309,Materials
+310,Industrials
+311,Information Technology
+312,Consumer Discretionary
+313,Consumer Staples
+314,Information Technology
+315,Consumer Discretionary
+316,Health Care
+317,Health Care
+318,Health Care
+319,Financials
+320,Health Care
+321,Consumer Discretionary
+322,Information Technology
+323,Information Technology
+324,Information Technology
+325,Real Estate
+326,Consumer Discretionary
+327,Consumer Staples
+328,Consumer Staples
+329,Consumer Staples
+330,Financials
+331,Financials
+332,Materials
+333,Information Technology
+334,Financials
+335,Health Care
+336,Financials
+337,Energy
+338,Health Care
+339,Information Technology
+340,Communication Services
+341,Consumer Discretionary
+342,Materials
+343,Communication Services
+344,Communication Services
+345,Utilities
+346,Industrials
+347,Consumer Discretionary
+348,Utilities
+349,Energy
+350,Consumer Discretionary
+351,Industrials
+352,Financials
+353,Industrials
+354,Consumer Discretionary
+355,Utilities
+356,Materials
+357,Information Technology
+358,Consumer Discretionary
+359,Energy
+360,Communication Services
+361,Energy
+362,Information Technology
+363,Industrials
+364,Materials
+365,Industrials
+366,Information Technology
+367,Information Technology
+368,Industrials
+369,Financials
+370,Consumer Staples
+371,Health Care
+372,Health Care
+373,Health Care
+374,Consumer Staples
+375,Energy
+376,Utilities
+377,Energy
+378,Financials
+379,Materials
+380,Utilities
+381,Financials
+382,Consumer Staples
+383,Financials
+384,Real Estate
+385,Financials
+386,Utilities
+387,Real Estate
+388,Consumer Discretionary
+389,Consumer Discretionary
+390,Information Technology
+391,Industrials
+392,Information Technology
+393,Health Care
+394,Consumer Discretionary
+395,Financials
+396,Industrials
+397,Real Estate
+398,Information Technology
+399,Real Estate
+400,Health Care
+401,Financials
+402,Industrials
+403,Health Care
+404,Industrials
+405,Industrials
+406,Industrials
+407,Industrials
+408,Consumer Discretionary
+409,Consumer Discretionary
+410,Information Technology
+411,Real Estate
+412,Energy
+413,Information Technology
+414,Materials
+415,Utilities
+416,Materials
+417,Real Estate
+418,Information Technology
+419,Real Estate
+420,Industrials
+421,Utilities
+422,Industrials
+423,Financials
+424,Industrials
+425,Consumer Discretionary
+426,Financials
+427,Health Care
+428,Financials
+429,Financials
+430,Information Technology
+431,Financials
+432,Information Technology
+433,Consumer Staples
+434,Financials
+435,Communication Services
+436,Consumer Discretionary
+437,Consumer Discretionary
+438,Information Technology
+439,Energy
+440,Health Care
+441,Information Technology
+442,Industrials
+443,Health Care
+444,Consumer Discretionary
+445,Communication Services
+446,Consumer Discretionary
+447,Financials
+448,Information Technology
+449,Consumer Discretionary
+450,Industrials
+451,Financials
+452,Communication Services
+453,Consumer Staples
+454,Real Estate
+455,Consumer Discretionary
+456,Financials
+457,Consumer Discretionary
+458,Consumer Discretionary
+459,Industrials
+460,Industrials
+461,Health Care
+462,Industrials
+463,Industrials
+464,Industrials
+465,Health Care
+466,Financials
+467,Consumer Discretionary
+468,Energy
+469,Health Care
+470,Real Estate
+471,Information Technology
+472,Industrials
+473,"Communication Services
+"
+474,Health Care
+475,Communication Services
+476,Information Technology
+477,Real Estate
+478,Materials
+479,Industrials
+480,Consumer Staples
+481,Consumer Staples
+482,Communication Services
+483,Industrials
+484,Health Care
+485,Utilities
+486,Health Care
+487,Financials
+488,Real Estate
+489,Information Technology
+490,Information Technology
+491,Materials
+492,Real Estate
+493,Consumer Discretionary
+494,Energy
+495,Financials
+496,Consumer Discretionary
+497,Utilities
+498,Information Technology
+499,Information Technology
+500,Industrials
+501,Consumer Discretionary
+502,Health Care
+503,Financials
+504,Health Care
