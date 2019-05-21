@@ -107,7 +107,12 @@ def get_sectors():
     df_sectors = pd.DataFrame(sectors)
     df_sectors.to_csv("sectors.csv")
 
-    print(sectors)
+    with open("sp500sectors.pickle", "wb") as f:
+        pickle.dump(sectors, f)
+    
+        print(sectors)
+
+        return(sectors)
 
 get_sectors()
 
@@ -126,8 +131,6 @@ df_tickers_names_sectors.values.tolist
 
 with open ("tickers_names_sectors.pickle", "wb") as f:
     pickle.dump(df_tickers_names_sectors, f)
-
-
 
 def get_data_from_yahoo(reload_sp500=False):
     if reload_sp500:
@@ -149,6 +152,27 @@ def get_data_from_yahoo(reload_sp500=False):
             print('Already have {}'.format(ticker))
 
 get_data_from_yahoo()
+
+def get_data_from_yahoo_for_sectors(reload_sp500=False):
+    if reload_sp500:
+        sectors = get_sectors()
+    else:
+        with open("sp500sectors.pickle", "rb") as f:
+            tickers = pickle.load(f)
+    if not os.path.exists('sectors_dfs'):
+        os.makedirs('sectors_dfs')
+
+    start = dt.datetime(2016, 1, 1)
+    end = dt.datetime.now()
+    for sector in sectors:
+        # just in case your connection breaks, we'd like to save our progress!
+        if not os.path.exists('sectors_dfs/{}.csv'.format(sector)):
+            df = web.DataReader(sector, "yahoo", start, end) 
+            df.to_csv('sectors_dfs/{}.csv'.format(sector))
+        else:
+            print('Already have {}'.format(sector))
+
+get_data_from_yahoo_for_sectors()
 
 """Furthermore, the data from yahoo and the tickers are not very useful by themselves, so obvisouly we want to compile the data in order to get a dataframe with all tickers and their data. We open the pickle file again, and make an empty dataframe.
 
