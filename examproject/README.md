@@ -34,6 +34,7 @@ We provide our suggested answers to the three problems defined in the *Exam2019.
 
 This includes solving an utility optimization problem using a model of labour as a function of human capital in a two-period scenario. We solve the model and find the relevant break points and visualize our results. We also provide interactive floatsliders where the user can see the effects of changing the wage rate, unemployment benefits and the aversion to work.
 
-Problem 2 description.
+Problem 2 consists of solving an AS-AD model and find the optimal inflation rate as well as output rate. We solve the model under certain assumptions about shocks, parameter values, and starting point in one period that then changes to the next. We then optimize the model to find parameter values that will give a specific variance for inflation and output, as well as corralation between the two. 
+
 
 Problem 3 description. 
