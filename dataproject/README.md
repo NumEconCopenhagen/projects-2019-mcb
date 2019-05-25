@@ -5,7 +5,7 @@ Group: Mads Frederiksen, Christian Fogtdal and Bjørn Cilleborg
 
 The purpose of this project is to gather stock data from the S&P500 using Yahoo's native API,
 and consolidate it into a single CSV-file. From there we create a chart comparing one of the companies from S&P500
-to the S&P500 benchmark. We chose 2000/01/01 arbitrarily as our start date with a dynamic end date (last closing date).
+to the S&P500 benchmark. We chose 2016/01/01 arbitrarily as our start date with the end date being 2019/05/20).
 
 
 During the process we decided to cut out the interactive widget due to time restraints.
