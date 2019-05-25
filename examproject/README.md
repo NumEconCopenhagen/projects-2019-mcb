@@ -37,4 +37,4 @@ Problem 1 consists of solving an utility optimization problem using a model of l
 Problem 2 consists of solving an AS-AD model and find the optimal inflation rate as well as output rate. We solve the model under certain assumptions about shocks, parameter values, and starting point in one period that then changes to the next. We then optimize the model to find parameter values that will give a specific variance for inflation and output, as well as corralation between the two. 
 
 
-Problem 3 description. 
+Problem 3 consists of an exchange economy with 50,000 consumers and 3 goods. We find the Walras equilibrium prices by the tâtonnement process, trial and error, and plot the excess demand in the process. Afterwards we look at the scenario, where the endowments are not differently drawn, but equal and see the changes on the equilibrium prices.
