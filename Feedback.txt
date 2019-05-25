@@ -1,0 +1,26 @@
+Group: MCB
+'-----------'
+Name: Mads Frederiksen (MFQ992)
+Feedback Dataproject:
+MK - https://github.com/NumEconCopenhagen/projects-2019-mk/issues/1	
+Den usynlige fod - https://github.com/NumEconCopenhagen/projects-2019-den-usynlige-fod/issues/2	
+Feedback Modelproject:
+KingCobra - https://github.com/NumEconCopenhagen/kingcobra/issues/8	
+Team Spirit - https://github.com/NumEconCopenhagen/projects-2019-team-spirit/issues/10
+'-----------'
+Name: Bjørn Blirup Cilleborg (NVF696)
+Feedback Dataproject:
+1312 - https://github.com/NumEconCopenhagen/projects-2019-1312/issues/2	
+MEC - https://github.com/NumEconCopenhagen/projects-2019-mec/issues/1	
+Feedback Modelproject:
+Alexander & Helene - https://github.com/NumEconCopenhagen/projects-2019-alexander-helene/issues/6	
+remove(argv[0]) - https://github.com/NumEconCopenhagen/projects-2019-remove-argv-0/issues/7
+'-----------'
+Name: Christian Fogtdal (RXW556)
+Feedback Dataproject:
+KingCobra - https://github.com/NumEconCopenhagen/kingcobra/issues/5 	
+MBT - https://github.com/NumEconCopenhagen/projects-2019-mbt/issues/2
+Feedback Modelproject:
+ourgroupname - https://github.com/NumEconCopenhagen/projects-2019-ourgroupname/issues/11
+MJK - https://github.com/NumEconCopenhagen/projects-2019-mjk/issues/11
+'-----------'
