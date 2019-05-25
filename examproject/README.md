@@ -33,4 +33,6 @@ We provide our suggested answers to the three problems defined in the *Exam2019.
 
 This includes solving an utility optimization problem using a model of labour as a function of human capital in a two-period scenario. We solve the model and find the relevant break points and visualize our results. We also provide interactive floatsliders where the user can see the effects of changing the wage rate, unemployment benefits and the aversion to work.
 
-Problem 
+Problem 2 description.
+
+Problem 3 description. 
