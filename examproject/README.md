@@ -12,7 +12,7 @@ The file *Dataproject.ipynb* is a Jupyter Notebook file containing our data proj
 
 The file *Modelproject.ipynb* is a Jupter Notebook file containing our model project of a **static and two-period Real Business Cycle (RBC) model**.
 
-The file *Exam2019.ipynb* is a Jupyter Notebook file containing our suggested answers to the questions provided in the original file of the same name. It provides data description and visualization of a utility maximization through **human capital accumulation, the aggregated demand and aggregated supply (AS-AD) model** as well as a **model of an exchange economy**. 
+The file *exam_2019.ipynb* is a Jupyter Notebook file containing our suggested answers to the questions provided in the original file of the same name. It provides data description and visualization of a utility maximization through **human capital accumulation, the aggregated demand and aggregated supply (AS-AD) model** as well as a **model of an exchange economy**. 
 
 Below the reader will find a more detailed description of each project.
 
@@ -30,7 +30,7 @@ We model an **intertemporal household optimization problem**, where we define a 
 Specifically, we model the trade-off between leisure and consumption and derive the optimal consumption smoothing path based on given parameter values of risk aversion, preference for leisure and the intertemporal elasticity of substitution. In our project we also consider the effects of changes in the parameters and present figures for each parameter. We consider examples of a single- and two-period model and derive the optimal bundle of consumption and leisure.
 
 ### Exam questions
-We provide our suggested answers to the three problems defined in the *Exam2019.ipynb* file. 
+We provide our suggested answers to the three problems defined in the *exam_2019.ipynb* file. 
 
 This includes solving an utility optimization problem using a model of labour as a function of human capital in a two-period scenario. We solve the model and find the relevant break points and visualize our results. We also provide interactive floatsliders where the user can see the effects of changing the wage rate, unemployment benefits and the aversion to work.
 
